@@ -69,6 +69,4 @@ function ArtistWrapper(props) {
     return (
         <Artist artistName={artistName} numListens={plays} listensTitle={'You have listened:'} showButton={false} />
     );
-}
-
-export default ArtistWrapper
+};
