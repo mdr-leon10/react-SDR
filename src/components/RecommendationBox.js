@@ -108,7 +108,7 @@ function ArtistContainer(props) {
             .then(res => {
                 updateData();
             })
-            .catch(err => console.log(res))
+            .catch(err => console.log(err))
     }
 
 
