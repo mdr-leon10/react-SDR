@@ -35,7 +35,7 @@ function MainView() {
                     </Route>)}
                 {userName !== '' &&
                     (<Route path="/detail/:aid">
-                        <DiscoverSongs/>
+                        <DiscoverSongs logout={logout} />
                     </Route>)}
                 {userName !== '' &&
                     (<Route path="/search">
@@ -44,7 +44,6 @@ function MainView() {
                 <Route path="/">
                     <SignIn setGlobalUserName={name => setUserName(name)} />
                 </Route>
-
             </Switch>
         </Router>
     )

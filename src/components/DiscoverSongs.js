@@ -22,9 +22,10 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function DiscoverSongs(props) {
-    const { aid } = useParams(); 
-    const [artistData, setArtistData] = useState({ready: false});
-    
+    const { aid } = useParams();
+    const { logout } = props;
+    const [artistData, setArtistData] = useState({ ready: false });
+
     const fetchArtistData = () => {
         axios.get(`http://172.24.100.74:8000/api/artist/${aid}/`)
             .then(res => {
@@ -46,12 +47,12 @@ export default function DiscoverSongs(props) {
     const classes = useStyles();
     return (
         <div>
-            <NavBar 
-            labels={['Home', 'Lo que he escuchado']}
-            buttonRedirections={['/home', '/history']}
-            showLogoutButton={true}
-            logoutCallback={logout}
-            showSearchButton={true}
+            <NavBar
+                labels={['Home', 'Lo que he escuchado']}
+                buttonRedirections={['/home', '/history']}
+                showLogoutButton={true}
+                logoutCallback={logout}
+                showSearchButton={true}
             />
             <div style={{ padding: '30px 60px 20px 60px' }}>
                 <Paper elevation={5} square>
@@ -59,7 +60,7 @@ export default function DiscoverSongs(props) {
                         {artistData.ready && artistData.songs.map((song) => {
                             return (
                                 <div style={{ width: "95%", padding: '10px 100px 30px 100px' }}>
-                                    <SongBox songName={' ' +  artistData['artist_name'] + ': ' + song['track_name']} />
+                                    <SongBox songName={' ' + artistData['artist_name'] + ': ' + song['track_name']} />
                                 </div>
                             );
                         })}
