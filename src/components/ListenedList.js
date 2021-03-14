@@ -19,7 +19,9 @@ export default function ListenedList(props) {
         .catch(err => console.log(err));
     }, [])
 
-    const placeholders = new Array(4 - (historyData.artists.length%4)).fill(0);
+    const itemWidth = '200px';
+    const itemsPerRow = 5;
+    const placeholders = new Array(itemsPerRow - (historyData.artists.length%itemsPerRow)).fill(0);
     return (
         <div>
             <NavBar
@@ -34,12 +36,12 @@ export default function ListenedList(props) {
                 <div style={{ display: "flex", flexWrap: "wrap" }}>
                     {historyData.artists.reduce((accumulator, artist, index) => {
 
-                        const el = (<div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px' }}>
+                        const el = (<div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: itemWidth, margin: '0px 20px' }}>
                             <ArtistWrapper aid={artist['artist_id']} plays={artist['play_count']} />
                         </div>);
                         const el2 = (<div style={{ flexBasis: "100%", height: "40px" }}> </div>);
 
-                        if ((index + 1) % 4 === 0) {
+                        if ((index + 1) % itemsPerRow === 0) {
                             accumulator.push(el, el2);
                         } else {
                             accumulator.push(el);
@@ -47,8 +49,8 @@ export default function ListenedList(props) {
                         return accumulator
                     }, []
                     )}
-                    {placeholders.length < 4 && placeholders.map(() => (
-                        <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px' }}></div>
+                    {placeholders.length < itemsPerRow && placeholders.map(() => (
+                        <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: itemWidth, margin: '0px 20px' }}></div>
                     ))}
                 </div>
             </div>

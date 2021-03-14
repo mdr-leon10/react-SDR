@@ -61,7 +61,9 @@ export default function DiscoverArtist(props) {
     }, []);
 
 
-    const placeholders = new Array(4 - (searchData.results.length % 4)).fill(0);
+    const itemWidth = '200px';
+    const itemsPerRow = 5;
+    const placeholders = new Array(itemsPerRow - (historyData.artists.length%itemsPerRow)).fill(0);
 
     return (
         <div>
@@ -94,7 +96,7 @@ export default function DiscoverArtist(props) {
                     {searchData.ready && searchData.results.reduce((accumulator, artist, index) => {
 
                         const el = (
-                            <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px' }}>
+                            <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: itemWidth, margin: '0px 20px' }}>
                                 <Artist
                                     artistName={artist['artist_name']}
                                     numListens={artist['play_total']}
@@ -113,8 +115,8 @@ export default function DiscoverArtist(props) {
                         return accumulator
                     }, []
                     )}
-                    {searchData.ready && placeholders.length < 4 && placeholders.map(() => (
-                        <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px' }}></div>
+                    {searchData.ready && placeholders.length < itemsPerRow && placeholders.map(() => (
+                        <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: itemWidth, margin: '0px 20px' }}></div>
                     ))}
                 </div>
             </div>

@@ -3,7 +3,7 @@ import Artist from './ArtistBox.js'
 import NavBar from './NavBar.js'
 
 export default function WhatDoYouLike(props) {
-    const { artistsArray } = props;
+    const { logout } = props;
     const artists = [
         {
             idArtist: '1',
@@ -67,19 +67,24 @@ export default function WhatDoYouLike(props) {
         }
     ];
 
+    const itemWidth = '200px';
+    const itemsPerRow = 5;
+
     return (
         <div>
-            <NavBar showSearchButton={true} />
+            <NavBar
+            showSearchButton={false}
+            />
             <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '50px', flexWrap: "wrap" }}>
                 <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> Queremos conocerte, cuentanos que te gusta...</label>
                 <div style={{display: "flex", flexWrap: "wrap"}}>
                     {artists.reduce((accumulator, artist, index) => {
 
-                        const el = (<div style={{flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px'}}> <Artist artistName={artist.artist} numListens={artist.worldListens} showButton={true}/> </div>);
+                        const el = (<div style={{flexGrow: "1", padding: '20px 0px 20px 0px', width: itemWidth, margin: '0px 20px'}}> <Artist artistName={artist.artist} numListens={artist.worldListens} showButton={true}/> </div>);
                         const el2 = (<div style={{ flexBasis: "100%", height: "40px"}}> </div>)
                         const el3 = (<div style={{ flexBasis: "100%",  width: "0"}}> </div>)
 
-                        if ( (index+1) % 4 === 0) {
+                        if ( (index+1) % itemsPerRow === 0) {
                             accumulator.push(el, el2);
                         } else {
                             accumulator.push(el);
