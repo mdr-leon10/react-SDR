@@ -25,7 +25,7 @@ export default function Recommendation(props) {
         axios.get(`http://172.24.100.74:8000/api/recommendation/${userName}/`)
         .then(res => {
             console.log(res.data)
-            recomUpdate = []
+            var recomUpdate = []
             if ('iid' in res.data) {
                 recomUpdate = Object.values(res.data['iid'])
             } else {
