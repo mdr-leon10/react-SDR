@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function Discover(props) {
+export default function DiscoverSongs(props) {
     const classes = useStyles();
     const artists = [
         {
@@ -93,19 +93,6 @@ export default function Discover(props) {
     return (
         <div>
             <NavBar labels={['Home', 'Lo que he escuchado']} showSearchButton={true}/>
-
-            <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '50px 20px 20px 20px' }}>
-                <div style={{ width: "80%" }}>
-                    <form className={classes.root} noValidate autoComplete="off">
-                        <TextField id="outlined-basic" label="Artist" variant="outlined" />
-                        <TextField id="outlined-basic" label="Song" variant="outlined" />
-                    </form>
-                </div>
-                <div style={{ width: "20%", flexDirection: "column" }}>
-                    <Button variant="contained" color="primary" className={classes.button}> Buscar </Button>
-                </div>
-            </div>
-
             <div style={{padding: '30px 60px 20px 60px'}}>
                 <Paper elevation={5} square>
                     <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '20px 0px 20px 0px', flexDirection: "column" }}>
