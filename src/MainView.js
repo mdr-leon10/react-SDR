@@ -11,6 +11,7 @@ import {
     Route,
     useParams,
 } from "react-router-dom"; 
+import WhatDoYouLike from './components/WhatDoYouLike'
 
 
 
@@ -25,6 +26,10 @@ function MainView() {
                 <Route path="/register">
                     <SignUp setGlobalUserName={name => setUserName(name)} />
                 </Route>
+                {userName !== '' &&
+                    (<Route path="/discover">
+                        <WhatDoYouLike userName={userName} logout={logout} />
+                    </Route>)}
                 {userName !== '' &&
                     (<Route path="/home">
                         <RecommendationBox userName={userName} logout={logout} />

@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import { useState } from 'react';
 import { Button } from '@material-ui/core';
+import { Redirect } from 'react-router';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,7 +18,20 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignUp(props) {
     const classes = useStyles();
+    const { setGlobalUserName = () => {} } = props;
     const [userName, setUserName] = useState('');
+
+    const handleClick = () => {
+        axios.post(
+            `http://172.24.100.74:8000/api/register/`,
+            {
+                'user_id': userName,
+            }
+        ).then(res => {
+            setGlobalUserName(userName);
+        })
+        .catch(err => console.log(err));
+    }
 
     return (
         <div>
@@ -39,12 +54,15 @@ export default function SignUp(props) {
                         <form className={classes.root} noValidate autoComplete="off" onSubmit={(e) => e.preventDefault()}>
                             <TextField value={userName} onChange={(e) => setUserName(e.target.value)} id="outlined-basic" label="Usuario" variant="outlined" />
                             <div style={{ width: '100px' }}>
-                                <Button color="primary" variant="contained" onClick={() => console.log(userName)}>Sign Up</Button>
+                                <Button color="primary" variant="contained" onClick={() => handleClick()}>Sign Up</Button>
                             </div>
                         </form>
                     </div>
                 </Paper>
             </div>
+            {userDidRegister && (
+                <Redirect to='/discover'/>
+            )}
         </div>
 
     )
