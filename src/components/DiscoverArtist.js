@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import Artist from './ArtistBox.js'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Redirect } from 'react-router';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -24,9 +25,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DiscoverArtist(props) {
     const classes = useStyles();
-    const { logout, history } = props;
+    const { logout } = props;
     const [searchData, setSearchData] = useState({ ready: false, results: [] });
     const [searchVal, setSearchVal] = useState('');
+    const [redirectToArtist, setRedirect] = useState({ show: false, aid: '' });
 
     const updateSearch = (query) => {
         axios.get(`http://172.24.100.74:8000/api/search/?artist_name_prefix=${query}`)
@@ -40,7 +42,10 @@ export default function DiscoverArtist(props) {
     };
 
     const handleDiscover = (aid) => {
-        history.push(`/search/aid`);
+        setRedirect({
+            show: true,
+            aid: aid,
+        })
     }
 
     const handleClick = () => {
@@ -88,11 +93,11 @@ export default function DiscoverArtist(props) {
 
                         const el = (
                             <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px' }}>
-                                <Artist 
-                                artistName={artist['artist_name']} 
-                                numListens={artist['play_total']} 
-                                showDiscoverButton={true}
-                                onClickDiscover={() => handleDiscover(artist['artist_id'])}
+                                <Artist
+                                    artistName={artist['artist_name']}
+                                    numListens={artist['play_total']}
+                                    showDiscoverButton={true}
+                                    onClickDiscover={() => handleDiscover(artist['artist_id'])}
                                 />
                             </div>
                         );
@@ -111,6 +116,9 @@ export default function DiscoverArtist(props) {
                     ))}
                 </div>
             </div>
+            {redirectToArtist.show && (
+                <Redirect to={`/detail/${redirectToArtist.aid}`} />
+            )}
         </div>
     );
 }
