@@ -56,7 +56,7 @@ export default function ButtonAppBar(props) {
             <Button 
             color="inherit"
             onClick={() => logoutCallback()}
-            >{buttonName}
+            >LOGOUT
             </Button>
             )}
             {showSearchButton && (<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Search artists you like">
