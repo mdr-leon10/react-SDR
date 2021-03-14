@@ -33,9 +33,9 @@ export default function ListenedList(props) {
                     {historyData.artists.reduce((accumulator, artist, index) => {
 
                         const el = (<div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px' }}>
-                            <ArtistWrapper aid={artist['artist_id']} plays={aritst['play_count']} />
+                            <ArtistWrapper aid={artist['artist_id']} plays={artist['play_count']} />
                         </div>);
-                        const el2 = (<div style={{ flexBasis: "100%", height: "40px" }}> </div>)
+                        const el2 = (<div style={{ flexBasis: "100%", height: "40px" }}> </div>);
 
                         if ((index + 1) % 4 === 0) {
                             accumulator.push(el, el2);
