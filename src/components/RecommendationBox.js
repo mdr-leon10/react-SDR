@@ -76,7 +76,7 @@ export default function Recommendation(props) {
 
 function ArtistContainer(props) {
     const { aid } = props;
-    const [artistData, setArtistData] = useState({ready: false});
+    const [artistData, setArtistData] = useState({ ready: false });
 
     useEffect(() => {
         axios.get(`http://172.24.100.74:8000/api/artist/${aid}/`)
@@ -86,7 +86,7 @@ function ArtistContainer(props) {
                     ready: true,
                     name: res.data['artist_name'],
                     worldListens: res.data['total_play'],
-                    songs: res.data['songs'],
+                    songs: res.data['songs'].slice(0, 3),
                 }))
             })
             .catch(err => console.log(err))
@@ -95,24 +95,24 @@ function ArtistContainer(props) {
 
     if (artistData.ready) {
         return (
-            <div style={{ paddingTop: '75px' }}>
-            <Paper elevation={5} square>
-                <div style={{ justifyContent: "space-evenly", display: "flex", alignItems: "center", padding: '80px 0px 80px 0px' }}>
-                    <div style={{ width: "35%" }}>
-                        <Artist artistName={artistData.name} numListens={artistData.worldListens} showButton={false} />
+            <div style={{ paddingTop: '75px', height: '400px'}}>
+                <Paper elevation={5} square>
+                    <div style={{ justifyContent: "space-evenly", display: "flex", alignItems: "center", padding: '80px 0px 80px 0px' }}>
+                        <div style={{ width: "35%" }}>
+                            <Artist artistName={artistData.name} numListens={artistData.worldListens} showButton={false} />
+                        </div>
+                        <div style={{ width: "55%", flexDirection: "column" }}>
+                            {artistData.songs.map((song) => {
+                                return (
+                                    <div style={{ padding: '40px 0px 40px 0px' }}>
+                                        <Song songName={song['track_name']} />
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
-                    <div style={{ width: "55%", flexDirection: "column" }}>
-                        {artistData.songs.map((song) => {
-                            return (
-                                <div style={{ padding: '40px 0px 40px 0px' }}>
-                                    <Song songName={song['track_name']} />
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-            </Paper>
-        </div>
+                </Paper>
+            </div>
         );
     } else {
         return (<div></div>);
