@@ -30,11 +30,11 @@ export default function Recommendation(props) {
                 } else {
                     recomUpdate = res.data['results']
                 }
-                setData({
-                    ...recomData,
+                setData(prevState => ({
+                    ...prevState,
                     ready: true,
                     artists: recomUpdate,
-                })
+                }))
             })
             .catch(err => console.log(err))
     }
