@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Artist from './ArtistBox.js'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from 'axios';
 
 
@@ -52,7 +52,7 @@ export default function DiscoverArtist(props) {
     }, []);
 
 
-    const placeholders = new Array(4 - (historyData.artists.length % 4)).fill(0);
+    const placeholders = new Array(4 - (searchData.results.length % 4)).fill(0);
 
     return (
         <div>
