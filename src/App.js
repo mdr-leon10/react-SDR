@@ -9,7 +9,7 @@ import SignIn from './components/SignIn.js';
 function App() {
   return (
     <div className="App">
-      <RecommendationBox/>
+      <Discover/>
     </div>
   );
 }

@@ -1,11 +1,22 @@
 import Paper from '@material-ui/core/Paper';
-import Song from './SongBox.js'
-import Artist from './ArtistBox.js'
-import NavBar from './NavBar.js'
+import Song from './SongBox.js';
+import Artist from './ArtistBox.js';
+import NavBar from './NavBar.js';
+import { makeStyles } from '@material-ui/core/styles';
+import Button from '@material-ui/core/Button';
 
+const useStyles = makeStyles((theme) => ({
+    root: {
+        '& > *': {
+            margin: theme.spacing(11),
+            width: "100%"
+        },
+    },
+}));
 
 export default function Recommendation(props) {
-    const { artistsArray} = props;
+    const classes = useStyles();
+    const { artistsArray } = props;
     const artists = [
         {
             idArtist: '1',
@@ -72,16 +83,28 @@ export default function Recommendation(props) {
     ];
     return (
         <div>
-            <NavBar labels ={['Home','Lo que he escuchado']} showSearchButton={true}/>
-            
-            <div style={{ display: "flex", flexWrap: 'wrap', justifyContent: "space-evenly", alignItems: "start", flexDirection: "column", margin: '100px' }}>
-                <label style={{ fontSize: '40px' }}>Basado en lo que has escuchado, te recomendamos: </label>
-                
+            <NavBar labels={['Home', 'Lo que he escuchado']} showSearchButton={true} />
+
+            <div style={{ flexDirection: "column", margin: '50px', justifyItems: "stretch", alignItems: "center"}}>
+                <div style={{display: "flex", padding: '50px 20px 20px 20px' }}>
+                    <div style={{flexGrow: "1"}}>
+                        <div style={{display: "flex", justifyContent: "start"}}>
+                        <label style={{ fontSize: '2em', width: "100%", textAlign: 'left', alignSelf: 'stretch' }}>Basado en lo que has escuchado, te recomendamos: </label>
+                        </div>
+                        
+                    </div>
+                    <div style={{flexGrow: "1"}}>
+                    <div style={{display: "flex", flexDirection: "row-reverse"}}>
+                        <Button variant="contained" color="primary"> Nuevas Recomendaciones </Button>
+                    </div> 
+                    </div>
+                </div>
+
                 {artists.map((artist, index) => {
                     return (
                         <div style={{ paddingTop: '75px' }}>
                             <Paper elevation={5} square>
-                                <div style={{ justifyContent: "space-evenly", display: "flex", alignItems: "center", padding: '20px 0px 80px 0px' }}>
+                                <div style={{ justifyContent: "space-evenly", display: "flex", alignItems: "center", padding: '80px 0px 80px 0px' }}>
                                     <div style={{ width: "35%" }}>
                                         <Artist artistName={artist.artist} numListens={artist.worldListens} showButton={false} />
                                     </div>

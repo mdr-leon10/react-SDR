@@ -11,15 +11,15 @@ export default function ArtistBox (props) {
                     <img src={process.env.PUBLIC_URL + '/micro.jpg'} width="100%" alt='Artist'/>
                 </div>
                 <div>
-                    <div style={{justifyContent: "left", display: "flex", alignItems: "left", alignContent: "space-between", padding: '20px 0px 20px 0px'}}>
-                        <label style={{ width: "100%", fontSize: '25px' }}>Artist: </label>
-                        <label style={{ width: "100%", fontSize: '25px' }}>{artistName ? artistName : 'Imagine Dragons'}</label>
+                    <div style={{justifyContent: "left", display: "flex", alignItems: "left", alignContent: "space-between", padding: '5px 0px 5px 0px'}}>
+                        <label style={{ width: "100%", fontSize: '1em' }}>Artist: </label>
+                        <label style={{ width: "100%", fontSize: '1em' }}>{artistName ? artistName : 'Imagine Dragons'}</label>
                     </div>
-                    <div style={{justifyContent: "center", display: "flex", alignItems: "center", padding: '20px 0px 20px 0px'}}>
-                        <label style={{ width: "100%", fontSize: '25px' }}> {listensTitle? listensTitle: 'World listens:'} </label>
-                        <label style={{ width: "100%", fontSize: '25px' }}>{numListens ? numListens : '1000'}</label>
+                    <div style={{justifyContent: "center", display: "flex", alignItems: "center", padding: '5px 0px 10px 0px'}}>
+                        <label style={{ width: "100%", fontSize: '1em' }}> {listensTitle? listensTitle: 'World listens:'} </label>
+                        <label style={{ width: "100%", fontSize: '1em' }}>{numListens ? numListens : '1000'}</label>
                     </div>
-                    <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '10px 0px 10px 0px', width: "100%" }}>
+                    <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '5px 0px 5px 0px', width: "100%" }}>
                     {showButton && (
                             <IconButton color="primary" aria-label="ThumbUpIcon">
                                 <ThumbUpIcon />

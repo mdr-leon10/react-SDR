@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 5,
     textAlign: 'center',
-    height: '200px'
+    height: '80px'
 
   },
   menuButton: {
@@ -23,23 +23,23 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
     alignItems: 'Start',
     flexDirection: "column",
-    height: '200px'
+    height: '80px'
   },
   customBar: {
-    height: '200px'
+    height: '80px'
   }
 }));
 
 export default function ButtonAppBar(props) {
   //const { button1, button2, showButton1, showButton2, showButton3} = props;
-  const { labels, showSearchButton, buttonHandlers } = props;
+  const { labels=[], showSearchButton, buttonHandlers } = props;
   const classes = useStyles();
 
   return (
     <div className={classes.root} style={{justifyContent: "space-evenly", alignItems: "center"}}>
       <AppBar position="static" className={classes.customBar}>
         <Toolbar>
-          <Typography variant="h1" className={classes.title}>
+          <Typography variant="h2" className={classes.title}>
             MyMusic.io
           </Typography>
           <div style={{flexDirection: "column" }}>

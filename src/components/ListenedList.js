@@ -71,13 +71,13 @@ export default function ListenedList(props) {
     return (
         <div>
             <NavBar labels={['Home', 'Lo que he escuchado']} showBshowSearchButtonutton3={true}/>
-            <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '100px', flexWrap: "wrap" }}>
-                <label style={{ fontSize: '40px', padding: '20px 0px 80px 0px' }}> Tu historial de artistas escuchados</label>
+            <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '50px', flexWrap: "wrap" }}>
+                <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> Tu historial de artistas escuchados</label>
                 <div style={{display: "flex", flexWrap: "wrap"}}>
                     {artists.reduce((accumulator, artist, index) => {
 
-                        const el = (<div style={{flexGrow: "1", padding: '20px 0px 40px 0px', width: '200px', margin: '0px 80px'}}> <Artist artistName={artist.artist} numListens={artist.worldListens} listensTitle={'Number of listens:'} showButton={false} /> </div>);
-                        const el2 = (<div style={{ flexBasis: "100%", height: "100px"}}> </div>)
+                        const el = (<div style={{flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px'}}> <Artist artistName={artist.artist} numListens={artist.worldListens} listensTitle={'Number of listens:'} showButton={false} /> </div>);
+                        const el2 = (<div style={{ flexBasis: "100%", height: "40px"}}> </div>)
 
                         if ( (index+1) % 4 === 0) {
                             accumulator.push(el, el2);

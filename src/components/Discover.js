@@ -9,7 +9,7 @@ const useStyles = makeStyles((theme) => ({
     root: {
         '& > *': {
             margin: theme.spacing(3),
-            width: '47%',
+            width: '40%',
         },
     },
     button: {
@@ -92,9 +92,9 @@ export default function Discover(props) {
 
     return (
         <div>
-            <NavBar button1={['Home', 'Lo que he escuchado']} showSearchButton={true}/>
+            <NavBar labels={['Home', 'Lo que he escuchado']} showSearchButton={true}/>
 
-            <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '100px 20px 20px 20px' }}>
+            <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '50px 20px 20px 20px' }}>
                 <div style={{ width: "80%" }}>
                     <form className={classes.root} noValidate autoComplete="off">
                         <TextField id="outlined-basic" label="Artist" variant="outlined" />

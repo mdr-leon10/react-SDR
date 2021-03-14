@@ -10,7 +10,7 @@ export default function SongBox(props) {
         <div>
             <Paper elevation={3} square>
                 <div style={{ justifyContent: "center", display: "flex", alignItems: "center" }}>
-                    <label style={{ width: "100%", height: "100", fontSize: '30px'}}>{songName ? songName : 'Bad liar'}</label>
+                    <label style={{ width: "100%", height: "100", fontSize: '1em'}}>{songName ? songName : 'Bad liar'}</label>
                     <IconButton color="primary" aria-label="PlayArrow">
                         <PlayArrow />
                     </IconButton>

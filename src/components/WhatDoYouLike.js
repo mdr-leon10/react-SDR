@@ -70,13 +70,13 @@ export default function WhatDoYouLike(props) {
     return (
         <div>
             <NavBar showSearchButton={true} />
-            <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '100px', flexWrap: "wrap" }}>
-                <label style={{ fontSize: '40px', padding: '20px 0px 80px 0px' }}> Queremos conocerte, cuentanos que te gusta...</label>
+            <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '50px', flexWrap: "wrap" }}>
+                <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> Queremos conocerte, cuentanos que te gusta...</label>
                 <div style={{display: "flex", flexWrap: "wrap"}}>
                     {artists.reduce((accumulator, artist, index) => {
 
-                        const el = (<div style={{flexGrow: "1", padding: '20px 0px 40px 0px', width: '200px', margin: '0px 80px'}}> <Artist artistName={artist.artist} numListens={artist.worldListens} showButton={true}/> </div>);
-                        const el2 = (<div style={{ flexBasis: "100%", height: "100px"}}> </div>)
+                        const el = (<div style={{flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px'}}> <Artist artistName={artist.artist} numListens={artist.worldListens} showButton={true}/> </div>);
+                        const el2 = (<div style={{ flexBasis: "100%", height: "40px"}}> </div>)
                         const el3 = (<div style={{ flexBasis: "100%",  width: "0"}}> </div>)
 
                         if ( (index+1) % 4 === 0) {
