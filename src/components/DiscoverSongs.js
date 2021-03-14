@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function DiscoverSongs(props) {
-    const { aid, userName } = useParams();
-    const { logout } = props;
+    const { aid } = useParams();
+    const { logout, userName } = props;
     const [artistData, setArtistData] = useState({ ready: false });
 
     const fetchArtistData = () => {
