@@ -46,8 +46,7 @@ export default function ButtonAppBar(props) {
           <div style={{flexDirection: "column" }}>
             {labels.map((buttonName, index) => (
             <Button 
-            color="inherit" 
-            variant="h1"
+            color="inherit"
             component={Link}
             to={buttonRedirections[index]}
             >{buttonName}
