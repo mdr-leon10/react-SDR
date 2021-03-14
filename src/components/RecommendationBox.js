@@ -1,9 +1,11 @@
 import Paper from '@material-ui/core/Paper';
+import axios from 'Axios';
 import Song from './SongBox.js';
 import Artist from './ArtistBox.js';
 import NavBar from './NavBar.js';
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
+import { useState, useEffect } from 'react';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -16,7 +18,17 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Recommendation(props) {
     const classes = useStyles();
-    const { artistsArray } = props;
+    const { userName, logout = () => {} } = props;
+    const [recomData, setData] = useState({ready: false, message: 'Loading home view...'});
+
+    useEffect(() => {
+        axios.get(`http://172.24.100.74:8000/api/recommendation/${userName}`)
+        .then(res => {
+            console.log(res.data)
+        })
+        .catch(err => console.log(err))
+    }, [])
+
     const artists = [
         {
             idArtist: '1',
@@ -83,24 +95,23 @@ export default function Recommendation(props) {
     ];
     return (
         <div>
-            <NavBar 
-            labels={['Home', 'Lo que he escuchado']} 
-            showSearchButton={true}
-            buttonRedirections={['/home','/history']}
+            <NavBar
+                labels={['Home', 'Lo que he escuchado']}
+                showSearchButton={true}
+                buttonRedirections={['/home', '/history']}
             />
 
-            <div style={{ flexDirection: "column", margin: '50px', justifyItems: "stretch", alignItems: "center"}}>
-                <div style={{display: "flex", padding: '50px 20px 20px 20px' }}>
-                    <div style={{flexGrow: "1"}}>
-                        <div style={{display: "flex", justifyContent: "start"}}>
-                        <label style={{ fontSize: '2em', width: "100%", textAlign: 'left', alignSelf: 'stretch' }}>Basado en lo que has escuchado, te recomendamos: </label>
+            <div style={{ flexDirection: "column", margin: '50px', justifyItems: "stretch", alignItems: "center" }}>
+                <div style={{ display: "flex", padding: '50px 20px 20px 20px' }}>
+                    <div style={{ flexGrow: "1" }}>
+                        <div style={{ display: "flex", justifyContent: "start" }}>
+                            <label style={{ fontSize: '2em', width: "100%", textAlign: 'left', alignSelf: 'stretch' }}>Basado en lo que has escuchado, te recomendamos: </label>
                         </div>
-                        
                     </div>
-                    <div style={{flexGrow: "1"}}>
-                    <div style={{display: "flex", flexDirection: "row-reverse"}}>
-                        <Button variant="contained" color="primary"> Nuevas Recomendaciones </Button>
-                    </div> 
+                    <div style={{ flexGrow: "1" }}>
+                        <div style={{ display: "flex", flexDirection: "row-reverse" }}>
+                            <Button variant="contained" color="primary"> Nuevas Recomendaciones </Button>
+                        </div>
                     </div>
                 </div>
 
