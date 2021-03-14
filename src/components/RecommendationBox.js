@@ -37,72 +37,8 @@ export default function Recommendation(props) {
                 })
             })
             .catch(err => console.log(err))
-    }, [])
-
-    const artists = [
-        {
-            idArtist: '1',
-            artist: 'Imagine Dragons',
-            songs: [
-                {
-                    idSong: '1',
-                    songName: 'Demons'
-                },
-                {
-                    idSong: '2',
-                    songName: 'Radioactive'
-                },
-                {
-                    idSong: '3',
-                    songName: 'Bad liar'
-                },
-            ],
-            worldListens: 10,
-            imageURL: ''
-        },
-
-        {
-            idArtist: '2',
-            artist: 'Flo Rida',
-            songs: [
-                {
-                    idSong: '4',
-                    songName: 'Club Cant Handle Me'
-                },
-                {
-                    idSong: '5',
-                    songName: 'Low'
-                },
-                {
-                    idSong: '6',
-                    songName: 'Hola'
-                },
-            ],
-            worldListens: 100,
-            imageURL: ''
-        }
-        ,
-        {
-            idArtist: '3',
-            artist: 'Andrea Bocelli',
-            songs: [
-                {
-                    idSong: '7',
-                    songName: 'Amo Soltanto Te'
-                },
-                {
-                    idSong: '8',
-                    songName: 'Because We Believe'
-                },
-                {
-                    idSong: '9',
-                    songName: 'Gloria the gift of life'
-                },
-            ],
-            worldListens: 1000000,
-            imageURL: ''
-        }
-    ];
+    }, []);
+    
     return (
         <div>
             <NavBar
