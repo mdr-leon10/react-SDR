@@ -20,6 +20,8 @@ export default function SignUp(props) {
     const classes = useStyles();
     const { setGlobalUserName = () => {} } = props;
     const [userName, setUserName] = useState('');
+    const [ userDidRegister, setDidRegister ] = useState(false);
+    const [ errorsData, setErrors ] = useState({ context: 'Please enter another user name, that one is already taken.', show: false});
 
     const handleClick = () => {
         axios.post(
@@ -29,8 +31,15 @@ export default function SignUp(props) {
             }
         ).then(res => {
             setGlobalUserName(userName);
+            setDidRegister(true);
         })
-        .catch(err => console.log(err));
+        .catch(err => {
+            console.log(err)
+            setErrors(prevState => ({
+                ...prevState,
+                show: true,
+            }))
+        });
     }
 
     return (
@@ -55,6 +64,9 @@ export default function SignUp(props) {
                             <TextField value={userName} onChange={(e) => setUserName(e.target.value)} id="outlined-basic" label="Usuario" variant="outlined" />
                             <div style={{ width: '100px' }}>
                                 <Button color="primary" variant="contained" onClick={() => handleClick()}>Sign Up</Button>
+                                <div style={{ width: '100%', display: 'flex', flexDirection: 'row-reverse'}}>
+                                    {errorsData.show && (<label>{errorsData.context}</label>)}
+                                </div>
                             </div>
                         </form>
                     </div>
