@@ -10,7 +10,6 @@ import {
     Switch,
     Route,
 } from "react-router-dom";
-import DiscoverArtist from './components/DiscoverArtist'
 
 
 function MainView() {
