@@ -3,7 +3,7 @@ import axios from 'axios';
 import Song from './SongBox.js';
 import Artist from './ArtistBox.js';
 import NavBar from './NavBar.js';
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, recomposeColor } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import { useState, useEffect } from 'react';
 
@@ -18,22 +18,25 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Recommendation(props) {
     const classes = useStyles();
-    const { userName, logout = () => {} } = props;
-    const [recomData, setData] = useState({ready: false, message: 'Loading home view...'});
+    const { userName, logout = () => { } } = props;
+    const [recomData, setData] = useState({ ready: false, artists: [] });
 
     useEffect(() => {
         axios.get(`http://172.24.100.74:8000/api/recommendation/${userName}/`)
-        .then(res => {
-            console.log(res.data)
-            var recomUpdate = []
-            if ('iid' in res.data) {
-                recomUpdate = Object.values(res.data['iid'])
-            } else {
-                recomUpdate = res.data['results']
-            }
-            console.log(recomUpdate)
-        })
-        .catch(err => console.log(err))
+            .then(res => {
+                var recomUpdate = []
+                if ('iid' in res.data) {
+                    recomUpdate = Object.values(res.data['iid'])
+                } else {
+                    recomUpdate = res.data['results']
+                }
+                setData({
+                    ...recomData,
+                    ready: true,
+                    artists: recomUpdate,
+                })
+            })
+            .catch(err => console.log(err))
     }, [])
 
     const artists = [
@@ -121,29 +124,61 @@ export default function Recommendation(props) {
                         </div>
                     </div>
                 </div>
-
-                {artists.map((artist, index) => {
-                    return (
-                        <div style={{ paddingTop: '75px' }}>
-                            <Paper elevation={5} square>
-                                <div style={{ justifyContent: "space-evenly", display: "flex", alignItems: "center", padding: '80px 0px 80px 0px' }}>
-                                    <div style={{ width: "35%" }}>
-                                        <Artist artistName={artist.artist} numListens={artist.worldListens} showButton={false} />
-                                    </div>
-                                    <div style={{ width: "55%", flexDirection: "column" }}>
-                                        {artist.songs.map((song) => {
-                                            return (
-                                                <div style={{ padding: '40px 0px 40px 0px' }}>
-                                                    <Song songName={song.songName} />
-                                                </div>
-                                            );
-                                        })}
-                                    </div>
-                                </div>
-                            </Paper>
-                        </div>);
-                })}
+                {!recomData.ready && (
+                    <div>
+                        <h1>Loading...</h1>
+                    </div>
+                )}
+                {recomData.ready && recomData.artists.map((aid, index) => (
+                    <ArtistContainer aid={aid} />
+                ))}
             </div>
         </div>
     );
+}
+
+
+function ArtistContainer(props) {
+    const { aid } = props;
+    const [artistData, setArtistData] = useState({ready: false});
+
+    useEffect(() => {
+        axios.get(`http://172.24.100.74:8000/api/artist/${aid}`)
+            .then(res => {
+                setArtistData(prevState => ({
+                    ...prevState,
+                    ready: true,
+                    name: res.data['artist_name'],
+                    worldListens: res.data['total_play'],
+                    songs: res.data['songs'],
+                }))
+            })
+            .catch(err => console.log(err))
+    }, []);
+
+
+    if (artistData.ready) {
+        return (
+            <div style={{ paddingTop: '75px' }}>
+            <Paper elevation={5} square>
+                <div style={{ justifyContent: "space-evenly", display: "flex", alignItems: "center", padding: '80px 0px 80px 0px' }}>
+                    <div style={{ width: "35%" }}>
+                        <Artist artistName={artistData.name} numListens={artistData.worldListens} showButton={false} />
+                    </div>
+                    <div style={{ width: "55%", flexDirection: "column" }}>
+                        {artistData.songs.map((song) => {
+                            return (
+                                <div style={{ padding: '40px 0px 40px 0px' }}>
+                                    <Song songName={song['track_name']} />
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </Paper>
+        </div>
+        );
+    } else {
+        return (<div></div>);
+    }
 }
