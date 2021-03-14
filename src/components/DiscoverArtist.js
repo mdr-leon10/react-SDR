@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DiscoverArtist(props) {
     const classes = useStyles();
-    const { logout } = props;
+    const { logout, context } = props;
     const [searchData, setSearchData] = useState({ ready: false, results: [] });
     const [searchVal, setSearchVal] = useState('');
 
@@ -38,6 +38,10 @@ export default function DiscoverArtist(props) {
             })
             .catch(err => console.log(err))
     };
+
+    const handleDiscover = (aid) => {
+        context.history.push(`/search/aid`);
+    }
 
     const handleClick = () => {
         setSearchData(prevState => ({
@@ -84,11 +88,15 @@ export default function DiscoverArtist(props) {
 
                         const el = (
                             <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px' }}>
-                                <Artist artistName={artist['artist_name']} numListens={artist['play_total']} showButton={true} />
+                                <Artist 
+                                artistName={artist['artist_name']} 
+                                numListens={artist['play_total']} 
+                                showDiscoverButton={true}
+                                onClickDiscover={() => handleDiscover(artist['artist_id'])}
+                                />
                             </div>
                         );
                         const el2 = (<div style={{ flexBasis: "100%", height: "40px" }}> </div>)
-                        const el3 = (<div style={{ flexBasis: "100%", width: "0" }}> </div>)
 
                         if ((index + 1) % 4 === 0) {
                             accumulator.push(el, el2);

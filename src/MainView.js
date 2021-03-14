@@ -9,6 +9,7 @@ import {
     BrowserRouter as Router,
     Switch,
     Route,
+    useParams,
 } from "react-router-dom"; 
 
 
@@ -32,6 +33,10 @@ function MainView() {
                         <ListenedList userName={userName} logout={logout} />
                     </Route>)}
                 {userName !== '' &&
+                    (<Route path="/search/:aid">
+                        <Test/>
+                    </Route>)}
+                {userName !== '' &&
                     (<Route path="/search">
                         <DiscoverArtist userName={userName} logout={logout} />
                     </Route>)}
@@ -41,6 +46,15 @@ function MainView() {
 
             </Switch>
         </Router>
+    )
+}
+
+function Test() {
+    const { aid } = useParams()
+    return (
+        <div>
+            {aid}
+        </div>
     )
 }
 
