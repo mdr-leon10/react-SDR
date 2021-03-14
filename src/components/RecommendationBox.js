@@ -38,7 +38,7 @@ export default function Recommendation(props) {
             })
             .catch(err => console.log(err))
     }, []);
-    
+
     return (
         <div>
             <NavBar
@@ -79,7 +79,7 @@ function ArtistContainer(props) {
     const [artistData, setArtistData] = useState({ready: false});
 
     useEffect(() => {
-        axios.get(`http://172.24.100.74:8000/api/artist/${aid}`)
+        axios.get(`http://172.24.100.74:8000/api/artist/${aid}/`)
             .then(res => {
                 setArtistData(prevState => ({
                     ...prevState,
