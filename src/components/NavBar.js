@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar(props) {
   //const { button1, button2, showButton1, showButton2, showButton3} = props;
-  const { labels=[], showSearchButton, buttonHandlers } = props;
+  const { labels=[], showSearchButton, buttonRedirections } = props;
   const classes = useStyles();
 
   return (
@@ -43,7 +44,15 @@ export default function ButtonAppBar(props) {
             MyMusic.io
           </Typography>
           <div style={{flexDirection: "column" }}>
-            {labels.map((buttonName, index) => (<Button color="inherit" variant="h1" onClick={() => buttonHandlers[index]()}>{buttonName}</Button>))}
+            {labels.map((buttonName, index) => (
+            <Button 
+            color="inherit" 
+            variant="h1"
+            component={Link}
+            to={buttonRedirections[index]}
+            >{buttonName}
+            </Button>
+            ))}
             {showSearchButton && (<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Search artists you like">
                               <SearchOutlinedIcon/>
                               </IconButton>)}
