@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import SignIn from './components/SignIn'
 import SignUp from './components/SignUp'
+import ListenedList from './components/ListenedList'
 import RecommendationBox from './components/RecommendationBox'
 
 import {
@@ -18,13 +19,18 @@ function MainView() {
         <Router>
             <Switch>
                 <Route path="/register">
-                    <SignUp setGlobalUserName={name => setUserName(name)}/>
+                    <SignUp setGlobalUserName={name => setUserName(name)} />
                 </Route>
-                <Route path="/home">
-                    <RecommendationBox userName={userName}/>
-                </Route>
+                {userName !== '' &&
+                    (<Route path="/home">
+                        <RecommendationBox userName={userName} />
+                    </Route>)}
+                {userName !== '' &&
+                    (<Route path="/history">
+                        <ListenedList userName={userName} />
+                    </Route>)}
                 <Route path="/">
-                    <SignIn setGlobalUserName={name => setUserName(name)}/>
+                    <SignIn setGlobalUserName={name => setUserName(name)} />
                 </Route>
 
             </Switch>

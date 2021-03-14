@@ -41,10 +41,11 @@ export default function SignIn(props) {
 
     return (
         <div>
-            <NavBar labels={['Sign Up', 'Sign In']} showSearchButton={false} buttonRedirections={[
-                '/register',
-                '/',
-            ]}/>
+            <NavBar 
+            labels={['Sign Up', 'Sign In']}
+            showSearchButton={false}
+            buttonRedirections={['/register','/',]}
+            />
             <div style={{ padding: '50px 100px 50px 100px' }}>
                 <Paper elevation={5} square>
                 <div style={{padding: '25px 50px 25px 50px'}}>

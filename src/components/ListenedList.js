@@ -70,7 +70,11 @@ export default function ListenedList(props) {
     ];
     return (
         <div>
-            <NavBar labels={['Home', 'Lo que he escuchado']} showBshowSearchButtonutton3={true}/>
+            <NavBar 
+            labels={['Home', 'Lo que he escuchado']} 
+            showSearchButton={true}
+            buttonRedirections={['/home','/history']}
+            />
             <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '50px', flexWrap: "wrap" }}>
                 <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> Tu historial de artistas escuchados</label>
                 <div style={{display: "flex", flexWrap: "wrap"}}>
