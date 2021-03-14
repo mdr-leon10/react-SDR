@@ -107,7 +107,7 @@ export default function DiscoverArtist(props) {
                         );
                         const el2 = (<div style={{ flexBasis: "100%", height: "40px" }}> </div>)
 
-                        if ((index + 1) % 4 === 0) {
+                        if ((index + 1) % itemsPerRow === 0) {
                             accumulator.push(el, el2);
                         } else {
                             accumulator.push(el);
