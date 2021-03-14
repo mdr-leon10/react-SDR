@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
 export default function DiscoverArtist(props) {
     const classes = useStyles();
     const { logout } = props;
-    const [searchData, setSearchData] = useState({ ready=false, results: [] });
+    const [searchData, setSearchData] = useState({ ready: false, results: [] });
     const [searchVal, setSearchVal] = useState('');
 
     const updateSearch = (query) => {
