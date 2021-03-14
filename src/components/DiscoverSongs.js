@@ -40,7 +40,7 @@ export default function DiscoverSongs(props) {
             })
             .catch(err => console.log(err));
     }
-    
+
     const handleSongPlay = (tid, uid) => {
         axios.post(
             `http://172.24.100.74:8000/api/play/`,
@@ -71,14 +71,19 @@ export default function DiscoverSongs(props) {
             />
             <div style={{ padding: '30px 60px 20px 60px' }}>
                 <Paper elevation={5} square>
-                    <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '20px 0px 20px 0px', flexDirection: "column" }}>
-                        {artistData.ready && artistData.songs.map((song) => {
-                            return (
-                                <div style={{ width: "95%", padding: '10px 100px 30px 100px' }}>
-                                    <SongBox songName={song['track_name']} onPlay={() => handleSongPlay(song['track_id'], userName)}/>
-                                </div>
-                            );
-                        })}
+                    <div style={{ justifyContent: "space-evenly", display: "flex", alignItems: "center", padding: '20px 0px 20px 0px' }}>
+                        <div style={{ maxWidth: "20%", maxHeight: "80%" }}>
+                            <Artist artistName={artistData.name} numListens={artistData.worldListens} showButton={false} />
+                        </div>
+                        <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '20px 0px 20px 0px', flexDirection: "column" }}>
+                            {artistData.ready && artistData.songs.map((song) => {
+                                return (
+                                    <div style={{ width: "95%", padding: '10px 100px 30px 100px' }}>
+                                        <SongBox songName={song['track_name']} onPlay={() => handleSongPlay(song['track_id'], userName)} />
+                                    </div>
+                                );
+                            })}
+                        </div>
                     </div>
                 </Paper>
             </div>
