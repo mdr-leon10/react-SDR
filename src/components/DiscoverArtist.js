@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DiscoverArtist(props) {
     const classes = useStyles();
-    const { logout, context } = props;
+    const { logout, history } = props;
     const [searchData, setSearchData] = useState({ ready: false, results: [] });
     const [searchVal, setSearchVal] = useState('');
 
@@ -40,7 +40,7 @@ export default function DiscoverArtist(props) {
     };
 
     const handleDiscover = (aid) => {
-        context.history.push(`/search/aid`);
+        history.push(`/search/aid`);
     }
 
     const handleClick = () => {
