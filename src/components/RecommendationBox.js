@@ -21,7 +21,7 @@ export default function Recommendation(props) {
     const { userName, logout = () => { } } = props;
     const [recomData, setData] = useState({ ready: false, artists: [] });
 
-    useEffect(() => {
+    const fetchData = () => {
         axios.get(`http://172.24.100.74:8000/api/recommendation/${userName}/`)
             .then(res => {
                 var recomUpdate = []
@@ -37,7 +37,24 @@ export default function Recommendation(props) {
                 })
             })
             .catch(err => console.log(err))
+    }
+
+    useEffect(() => {
+        fetchData();
     }, []);
+
+    const changeRecommendations = () => {
+        setData(prevState => ({
+            ...prevState,
+            ready: false,
+        }));
+        axios.get(
+            `http://172.24.100.74:8000/api/push/${userName}/`,
+        ).then(res => {
+            fetchData();
+        })
+        .catch(err => console.log(err))
+    }
 
     return (
         <div>
@@ -58,7 +75,7 @@ export default function Recommendation(props) {
                     </div>
                     <div style={{ flexGrow: "1" }}>
                         <div style={{ display: "flex", flexDirection: "row-reverse" }}>
-                            <Button variant="contained" color="primary"> Nuevas Recomendaciones </Button>
+                            <Button variant="contained" color="primary" onClick={() => changeRecommendations()}> Nuevas Recomendaciones </Button>
                         </div>
                     </div>
                 </div>
