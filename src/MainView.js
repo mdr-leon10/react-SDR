@@ -14,7 +14,10 @@ import {
 
 function MainView() {
     const [userName, setUserName] = useState('');
-
+    const [logoutUser, setLogout] = useState(false);
+    const logout = () => {
+        setUserName('');
+    }
     return (
         <Router>
             <Switch>
@@ -23,11 +26,11 @@ function MainView() {
                 </Route>
                 {userName !== '' &&
                     (<Route path="/home">
-                        <RecommendationBox userName={userName} />
+                        <RecommendationBox userName={userName} logout={logout} />
                     </Route>)}
                 {userName !== '' &&
                     (<Route path="/history">
-                        <ListenedList userName={userName} />
+                        <ListenedList userName={userName} logout={logout} />
                     </Route>)}
                 <Route path="/">
                     <SignIn setGlobalUserName={name => setUserName(name)} />

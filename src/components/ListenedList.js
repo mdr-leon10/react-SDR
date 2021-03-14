@@ -6,7 +6,7 @@ import NavBar from './NavBar.js';
 
 
 export default function ListenedList(props) {
-    const { userName } = props;
+    const { userName, logout = () => { } } = props;
     const [historyData, setHistory] = useState({artists: []});
 
     useEffect(() => {
@@ -26,6 +26,8 @@ export default function ListenedList(props) {
                 labels={['Home', 'Lo que he escuchado']}
                 showSearchButton={true}
                 buttonRedirections={['/home', '/history']}
+                showLogoutButton={true}
+                logoutCallback={logout}
             />
             <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '50px', flexWrap: "wrap" }}>
                 <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> Los artistas que has escuchado </label>
@@ -56,7 +58,7 @@ export default function ListenedList(props) {
 
 function ArtistWrapper(props) {
     const { aid, plays } = props;
-    const [ artistName, setName ] = useState('');
+    const [ artistName, setName ] = useState('Loading...');
 
     useEffect(() => {
         axios.get(`http://172.24.100.74:8000/api/artist/${aid}/`)

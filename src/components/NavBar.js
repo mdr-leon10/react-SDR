@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar(props) {
   //const { button1, button2, showButton1, showButton2, showButton3} = props;
-  const { labels=[], showSearchButton, buttonRedirections } = props;
+  const { labels=[], showSearchButton=false, showLogoutButton=false, buttonRedirections, logoutCallback = () => {} } = props;
   const classes = useStyles();
 
   return (
@@ -52,6 +52,13 @@ export default function ButtonAppBar(props) {
             >{buttonName}
             </Button>
             ))}
+            {showLogoutButton && (
+            <Button 
+            color="inherit"
+            onClick={() => logoutCallback()}
+            >{buttonName}
+            </Button>
+            )}
             {showSearchButton && (<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Search artists you like">
                               <SearchOutlinedIcon/>
                               </IconButton>)}

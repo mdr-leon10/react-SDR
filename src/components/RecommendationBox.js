@@ -45,6 +45,8 @@ export default function Recommendation(props) {
                 labels={['Home', 'Lo que he escuchado']}
                 showSearchButton={true}
                 buttonRedirections={['/home', '/history']}
+                showLogoutButton={true}
+                logoutCallback={logout}
             />
 
             <div style={{ flexDirection: "column", margin: '50px', justifyItems: "stretch", alignItems: "center" }}>
