@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function DiscoverSongs(props) {
-    const { aid } = useParams();
+    const { aid, userName } = useParams();
     const { logout } = props;
     const [artistData, setArtistData] = useState({ ready: false });
 
@@ -39,6 +39,20 @@ export default function DiscoverSongs(props) {
                 }))
             })
             .catch(err => console.log(err));
+    }
+    
+    const handleSongPlay = (tid, uid) => {
+        axios.post(
+            `http://172.24.100.74:8000/api/play/`,
+            {
+                user_id: uid,
+                track_id: tid,
+            })
+            .catch(err => console.log(err))
+        setArtistData(prevState => ({
+            ...prevState,
+            worldListens: prevState.worldListens + 1
+        }))
     }
 
     useEffect(() => {
@@ -61,7 +75,7 @@ export default function DiscoverSongs(props) {
                         {artistData.ready && artistData.songs.map((song) => {
                             return (
                                 <div style={{ width: "95%", padding: '10px 100px 30px 100px' }}>
-                                    <SongBox songName={song['track_name']} />
+                                    <SongBox songName={song['track_name']} onPlay={() => handleSongPlay(song['track_id'], userName)}/>
                                 </div>
                             );
                         })}

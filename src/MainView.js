@@ -35,7 +35,7 @@ function MainView() {
                     </Route>)}
                 {userName !== '' &&
                     (<Route path="/detail/:aid">
-                        <DiscoverSongs logout={logout} />
+                        <DiscoverSongs userName={userName} logout={logout} />
                     </Route>)}
                 {userName !== '' &&
                     (<Route path="/search">
