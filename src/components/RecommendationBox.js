@@ -22,9 +22,16 @@ export default function Recommendation(props) {
     const [recomData, setData] = useState({ready: false, message: 'Loading home view...'});
 
     useEffect(() => {
-        axios.get(`http://172.24.100.74:8000/api/recommendation/${userName}`)
+        axios.get(`http://172.24.100.74:8000/api/recommendation/${userName}/`)
         .then(res => {
             console.log(res.data)
+            recomUpdate = []
+            if ('iid' in res.data) {
+                recomUpdate = Object.values(res.data['iid'])
+            } else {
+                recomUpdate = res.data['results']
+            }
+            console.log(recomUpdate)
         })
         .catch(err => console.log(err))
     }, [])
