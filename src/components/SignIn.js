@@ -20,6 +20,7 @@ export default function SignIn(props) {
     const classes = useStyles();
     const [userName, setUserName] = useState('');
     const [errorsData, setErrors] = useState({ context: '', show: false});
+    const [showRedirect, setShowRedirect] = useState(false);
 
     const handleClick = () => {
         if (userName === "") {
@@ -27,7 +28,7 @@ export default function SignIn(props) {
         } else {
             axios.get(`http://172.24.100.74:8000/api/user/${userName}`)
             .then(res => {
-                props.context.history.push('/home')
+                setShowRedirect(true)
                 setGlobalUserName(userName)
             })
             .catch(err => {
@@ -66,6 +67,7 @@ export default function SignIn(props) {
                         
                     </div>
                 </Paper>
+                {showRedirect && (<Redirect to="/home"/>)}
             </div>
         </div>
 
