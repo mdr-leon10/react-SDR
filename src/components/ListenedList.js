@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Artist from './ArtistBox.js';
 import NavBar from './NavBar.js';
@@ -19,7 +19,7 @@ export default function ListenedList(props) {
         .catch(err => console.log(err));
     }, [])
 
-    const placeholders = new Array(4 - (history.artists.length%4)).fill(0);
+    const placeholders = new Array(4 - (historyData.artists.length%4)).fill(0);
     return (
         <div>
             <NavBar
@@ -30,7 +30,7 @@ export default function ListenedList(props) {
             <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '50px', flexWrap: "wrap" }}>
                 <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> Los artistas que has escuchado </label>
                 <div style={{ display: "flex", flexWrap: "wrap" }}>
-                    {history.artists.reduce((accumulator, artist, index) => {
+                    {historyData.artists.reduce((accumulator, artist, index) => {
 
                         const el = (<div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px' }}>
                             <ArtistWrapper aid={artist['artist_id']} plays={aritst['play_count']} />
