@@ -4,13 +4,14 @@ import SignUp from './components/SignUp'
 import ListenedList from './components/ListenedList'
 import DiscoverArtist from './components/DiscoverArtist'
 import RecommendationBox from './components/RecommendationBox'
-
+import DiscoverSongs from './components/DiscoverSongs'
 import {
     BrowserRouter as Router,
     Switch,
     Route,
     useParams,
 } from "react-router-dom"; 
+
 
 
 function MainView() {
@@ -34,7 +35,7 @@ function MainView() {
                     </Route>)}
                 {userName !== '' &&
                     (<Route path="/detail/:aid">
-                        <Test/>
+                        <DiscoverSongs/>
                     </Route>)}
                 {userName !== '' &&
                     (<Route path="/search">
@@ -46,15 +47,6 @@ function MainView() {
 
             </Switch>
         </Router>
-    )
-}
-
-function Test() {
-    const { aid } = useParams()
-    return (
-        <div>
-            {aid}
-        </div>
     )
 }
 

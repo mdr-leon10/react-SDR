@@ -34,6 +34,7 @@ export default function ArtistBox(props) {
                             </IconButton>)}
                         {showDiscoverButton && (
                             <Button
+                            color='primary'
                             variant='contained'
                             onClick={() => onClickDiscover()}
                             >

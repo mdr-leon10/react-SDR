@@ -2,6 +2,8 @@ import Paper from '@material-ui/core/Paper';
 import SongBox from './SongBox.js';
 import NavBar from './NavBar.js';
 import { makeStyles } from '@material-ui/core/styles';
+import { useParams } from 'react-router';
+import { useEffect, useState } from 'react';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,74 +22,28 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function DiscoverSongs(props) {
+    const { aid } = useParams(); 
+    const [artistData, setArtistData] = useState({ready: false});
+    
+    const fetchArtistData = () => {
+        axios.get(`http://172.24.100.74:8000/api/artist/${aid}/`)
+            .then(res => {
+                setArtistData(prevState => ({
+                    ...prevState,
+                    ready: true,
+                    name: res.data['artist_name'],
+                    worldListens: res.data['total_play'],
+                    songs: res.data['songs'],
+                }))
+            })
+            .catch(err => console.log(err));
+    }
+
+    useEffect(() => {
+        fetchArtistData();
+    }, []);
+
     const classes = useStyles();
-    const artists = [
-        {
-            idArtist: '1',
-            artist: 'Imagine Dragons',
-            songs: [
-                {
-                    idSong: '1',
-                    songName: 'Demons'
-                },
-                {
-                    idSong: '2',
-                    songName: 'Radioactive'
-                },
-                {
-                    idSong: '3',
-                    songName: 'Bad liar'
-                },
-            ],
-            worldListens: 10,
-            imageURL: ''
-        },
-
-        {
-            idArtist: '2',
-            artist: 'Flo Rida',
-            songs: [
-                {
-                    idSong: '4',
-                    songName: 'Club Cant Handle Me'
-                },
-                {
-                    idSong: '5',
-                    songName: 'Low'
-                },
-                {
-                    idSong: '6',
-                    songName: 'Hola'
-                },
-            ],
-            worldListens: 100,
-            imageURL: ''
-        }
-        ,
-        {
-            idArtist: '3',
-            artist: 'Andrea Bocelli',
-            songs: [
-                {
-                    idSong: '7',
-                    songName: 'Amo Soltanto Te'
-                },
-                {
-                    idSong: '8',
-                    songName: 'Because We Believe'
-                },
-                {
-                    idSong: '9',
-                    songName: 'Gloria the gift of life'
-                },
-            ],
-            worldListens: 1000000,
-            imageURL: ''
-        }
-    ];
-    const { songArray = artists } = props;
-
-
     return (
         <div>
             <NavBar 
@@ -100,16 +56,11 @@ export default function DiscoverSongs(props) {
             <div style={{ padding: '30px 60px 20px 60px' }}>
                 <Paper elevation={5} square>
                     <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '20px 0px 20px 0px', flexDirection: "column" }}>
-                        {songArray.map((artist) => {
-                            var artistName = artist.artist;
+                        {artistData.ready && artistData.songs.map((song) => {
                             return (
-                                artist.songs.map((song) => {
-                                    return (
-                                        <div style={{ width: "95%", padding: '10px 100px 30px 100px' }}>
-                                            <SongBox songName={' ' + artistName + ': ' + song.songName} />
-                                        </div>
-                                    );
-                                })
+                                <div style={{ width: "95%", padding: '10px 100px 30px 100px' }}>
+                                    <SongBox songName={' ' +  artistData['artist_name'] + ': ' + song['track_name']} />
+                                </div>
                             );
                         })}
                     </div>
