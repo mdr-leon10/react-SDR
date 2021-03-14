@@ -69,7 +69,7 @@ export default function ListenedList(props) {
         }
     ];
 
-    const placeholders = new Array(len(artists) % 4);
+    const placeholders = new Array(artists.length % 4);
     return (
         <div>
             <NavBar
@@ -93,7 +93,7 @@ export default function ListenedList(props) {
                         return accumulator
                     }, []
                     )}
-                    {len(placeholders) > 0 && placeholders.map(() => (
+                    {placeholders.length > 0 && placeholders.map(() => (
                         <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px' }}></div>
                     ))}
                 </div>
