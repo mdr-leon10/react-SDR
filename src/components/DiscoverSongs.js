@@ -75,7 +75,7 @@ export default function DiscoverSongs(props) {
                         <div style={{ maxWidth: "20%", maxHeight: "80%" }}>
                             <Artist artistName={artistData.name} numListens={artistData.worldListens} showButton={false} />
                         </div>
-                        <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '20px 0px 20px 0px', flexDirection: "column" }}>
+                        <div style={{ width: "70%", justifyContent: "center", display: "flex", alignItems: "center", padding: '20px 0px 20px 0px', flexDirection: "column" }}>
                             {artistData.ready && artistData.songs.map((song) => {
                                 return (
                                     <div style={{ width: "95%", padding: '10px 100px 30px 100px' }}>
