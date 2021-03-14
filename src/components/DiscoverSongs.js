@@ -4,6 +4,7 @@ import NavBar from './NavBar.js';
 import { makeStyles } from '@material-ui/core/styles';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
     root: {
