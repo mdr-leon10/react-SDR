@@ -98,10 +98,10 @@ function ArtistContainer(props) {
             <div style={{ paddingTop: '75px'}}>
                 <Paper elevation={5} square style={{height: '500px'}}>
                     <div style={{ justifyContent: "space-evenly", display: "flex", alignItems: "center", padding: '80px 0px 80px 0px' }}>
-                        <div style={{ width: "35%" }}>
+                        <div style={{ height: "80%" }}>
                             <Artist artistName={artistData.name} numListens={artistData.worldListens} showButton={false} />
                         </div>
-                        <div style={{ width: "55%", flexDirection: "column" }}>
+                        <div style={{ width: "50%", flexDirection: "column" }}>
                             {artistData.songs.map((song) => {
                                 return (
                                     <div style={{ padding: '40px 0px 40px 0px' }}>
