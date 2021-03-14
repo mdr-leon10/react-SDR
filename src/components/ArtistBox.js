@@ -29,9 +29,12 @@ export default function ArtistBox(props) {
                     </div>
                     <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '5px 0px 5px 0px', width: "100%" }}>
                         {showButton && (
-                            <IconButton color="primary" aria-label="ThumbUpIcon">
-                                <ThumbUpIcon />
-                            </IconButton>)}
+                            <div style={{ padding: '0px 0px 10px 0px' }}>
+                                <IconButton color="primary" aria-label="ThumbUpIcon">
+                                    <ThumbUpIcon />
+                                </IconButton>
+                            </div>
+                        )}
                         {showDiscoverButton && (
                             <div style={{ padding: '0px 0px 10px 0px' }}>
                                 <Button
