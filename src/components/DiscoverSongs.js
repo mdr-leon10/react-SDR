@@ -61,7 +61,7 @@ export default function DiscoverSongs(props) {
                         {artistData.ready && artistData.songs.map((song) => {
                             return (
                                 <div style={{ width: "95%", padding: '10px 100px 30px 100px' }}>
-                                    <SongBox songName={' ' + artistData['artist_name'] + ': ' + song['track_name']} />
+                                    <SongBox songName={' ' + artistData.name + ': ' + song['track_name']} />
                                 </div>
                             );
                         })}
