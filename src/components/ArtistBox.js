@@ -10,7 +10,7 @@ export default function ArtistBox(props) {
         showButton = false,
         showDiscoverButton = false,
         listensTitle,
-        onClickDiscover=()=>{},
+        onClickDiscover = () => { },
     } = props;
     return (
         <div>
@@ -33,13 +33,16 @@ export default function ArtistBox(props) {
                                 <ThumbUpIcon />
                             </IconButton>)}
                         {showDiscoverButton && (
-                            <Button
-                            color='primary'
-                            variant='contained'
-                            onClick={() => onClickDiscover()}
-                            >
-                                DISCOVER
-                            </Button>)}
+                            <div style={{ padding: '0px 0px 10px 0px' }}>
+                                <Button
+                                    color='primary'
+                                    variant='contained'
+                                    onClick={() => onClickDiscover()}
+                                >
+                                    DISCOVER
+                                </Button>
+                            </div>
+                        )}
                     </div>
                 </div>
 
