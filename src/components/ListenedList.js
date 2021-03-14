@@ -47,7 +47,7 @@ export default function ListenedList(props) {
                         return accumulator
                     }, []
                     )}
-                    {placeholders.length > 0 && placeholders.length < 4 && placeholders.map(() => (
+                    {placeholders.length < 4 && placeholders.map(() => (
                         <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px' }}></div>
                     ))}
                 </div>
