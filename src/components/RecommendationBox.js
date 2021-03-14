@@ -83,7 +83,11 @@ export default function Recommendation(props) {
     ];
     return (
         <div>
-            <NavBar labels={['Home', 'Lo que he escuchado']} showSearchButton={true} />
+            <NavBar 
+            labels={['Home', 'Lo que he escuchado']} 
+            showSearchButton={true}
+            buttonRedirections={['/home','/history']}
+            />
 
             <div style={{ flexDirection: "column", margin: '50px', justifyItems: "stretch", alignItems: "center"}}>
                 <div style={{display: "flex", padding: '50px 20px 20px 20px' }}>
