@@ -80,7 +80,7 @@ function ArtistContainer(props) {
     const { aid, userName } = props;
     const [artistData, setArtistData] = useState({ ready: false });
 
-    const updateData = () => {
+    useEffect(() => {
         axios.get(`http://172.24.100.74:8000/api/artist/${aid}/`)
             .then(res => {
                 setArtistData(prevState => ({
@@ -91,11 +91,7 @@ function ArtistContainer(props) {
                     songs: res.data['songs'].slice(0, 3),
                 }))
             })
-            .catch(err => console.log(err))
-    }
-
-    useEffect(() => {
-        updateData();
+            .catch(err => console.log(err));
     }, []);
 
     const handleSongPlay = (tid, uid) => {
@@ -105,10 +101,11 @@ function ArtistContainer(props) {
                 user_id: uid,
                 track_id: tid,
             })
-            .then(res => {
-                updateData();
-            })
             .catch(err => console.log(err))
+        setArtistData(prevState => ({
+            ...prevState,
+            worldListens: prevState.worldListens + 1
+        }))
     }
 
 
