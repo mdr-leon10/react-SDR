@@ -27,7 +27,7 @@ export default function SignIn(props) {
         } else {
             axios.get(`http://172.24.100.74:8000/api/user/${userName}`)
             .then(res => {
-                props.history.push('/home')
+                props.context.history.push('/home')
                 setGlobalUserName(userName)
             })
             .catch(err => {
