@@ -1,5 +1,5 @@
 import Paper from '@material-ui/core/Paper';
-import axios from 'Axios';
+import axios from 'axios';
 import Song from './SongBox.js';
 import Artist from './ArtistBox.js';
 import NavBar from './NavBar.js';
