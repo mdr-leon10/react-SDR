@@ -4,7 +4,7 @@ import Paper from '@material-ui/core/Paper';
 
 
 export default function SongBox(props) {
-    const { songName} = props; 
+    const { songName } = props; 
 
     return (
         <div>
