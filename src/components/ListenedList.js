@@ -1,75 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import Artist from './ArtistBox.js';
 import NavBar from './NavBar.js';
 
 
 
 export default function ListenedList(props) {
-    const { artistName } = props;
-    const artists = [
-        {
-            idArtist: '1',
-            artist: 'Imagine Dragons',
-            worldListens: 10,
-            imageURL: ''
-        },
+    const { userName } = props;
+    const [historyData, setHistory] = useState({artists: []});
 
-        {
-            idArtist: '2',
-            artist: 'Flo Rida',
-            worldListens: 100,
-            imageURL: ''
-        }
-        ,
-        {
-            idArtist: '3',
-            artist: 'Andrea Bocelli',
-            worldListens: 1000000,
-            imageURL: ''
-        },
-        {
-            idArtist: '1',
-            artist: 'Imagine Dragons',
-            worldListens: 10,
-            imageURL: ''
-        },
+    useEffect(() => {
+        axios.get(`http://172.24.100.74:8000/api/history/${userName}/`)
+        .then(res => {
+              setHistory({
+                  artists: res.data['history']
+              });
+        })
+        .catch(err => console.log(err));
+    }, [])
 
-        {
-            idArtist: '2',
-            artist: 'Flo Rida',
-            worldListens: 100,
-            imageURL: ''
-        }
-        ,
-        {
-            idArtist: '3',
-            artist: 'Andrea Bocelli',
-            worldListens: 1000000,
-            imageURL: ''
-        },
-        {
-            idArtist: '1',
-            artist: 'Imagine Dragons',
-            worldListens: 10,
-            imageURL: ''
-        },
-
-        {
-            idArtist: '2',
-            artist: 'Flo Rida',
-            worldListens: 100,
-            imageURL: ''
-        }
-        ,
-        {
-            idArtist: '3',
-            artist: 'Andrea Bocelli',
-            worldListens: 1000000,
-            imageURL: ''
-        }
-    ];
-
-    const placeholders = new Array(4 - (artists.length%4)).fill(0);
+    const placeholders = new Array(4 - (history.artists.length%4)).fill(0);
     return (
         <div>
             <NavBar
@@ -80,9 +30,11 @@ export default function ListenedList(props) {
             <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '50px', flexWrap: "wrap" }}>
                 <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> Los artistas que has escuchado </label>
                 <div style={{ display: "flex", flexWrap: "wrap" }}>
-                    {artists.reduce((accumulator, artist, index) => {
+                    {history.artists.reduce((accumulator, artist, index) => {
 
-                        const el = (<div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px' }}> <Artist artistName={artist.artist} numListens={artist.worldListens} listensTitle={'Number of listens:'} showButton={false} /> </div>);
+                        const el = (<div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: '250px', margin: '0px 20px' }}>
+                            <ArtistWrapper aid={artist['artist_id']} plays={aritst['play_count']} />
+                        </div>);
                         const el2 = (<div style={{ flexBasis: "100%", height: "40px" }}> </div>)
 
                         if ((index + 1) % 4 === 0) {
@@ -101,3 +53,22 @@ export default function ListenedList(props) {
         </div>
     );
 }
+
+function ArtistWrapper(props) {
+    const { aid, plays } = props;
+    const [ artistName, setName ] = useState('');
+
+    useEffect(() => {
+        axios.get(`http://172.24.100.74:8000/api/artist/${aid}/`)
+        .then(res => {
+            setName(res.data['artist_name']);
+        })
+        .catch(err => console.log(err))
+    }, [])
+
+    return (
+        <Artist artistName={artistName} numListens={plays} listensTitle={'You have listened:'} showButton={false} />
+    );
+}
+
+export default ArtistWrapper
