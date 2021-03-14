@@ -1,6 +1,7 @@
 import Paper from '@material-ui/core/Paper';
 import SongBox from './SongBox.js';
 import NavBar from './NavBar.js';
+import Artist from './ArtistBox.js'
 import { makeStyles } from '@material-ui/core/styles';
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
