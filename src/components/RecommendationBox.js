@@ -97,7 +97,7 @@ function ArtistContainer(props) {
         return (
             <div style={{ paddingTop: '75px'}}>
                 <Paper elevation={5} square style={{height: '40%'}}>
-                    <div style={{ justifyContent: "space-evenly", display: "flex", alignItems: "center", padding: '0px 0px 80px 0px' }}>
+                    <div style={{ justifyContent: "space-evenly", display: "flex", alignItems: "center", padding: '0px 0px 0px 0px' }}>
                         <div style={{ maxWidth: "20%", maxHeight: "80%" }}>
                             <Artist artistName={artistData.name} numListens={artistData.worldListens} showButton={false} />
                         </div>
