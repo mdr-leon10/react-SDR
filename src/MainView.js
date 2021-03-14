@@ -33,7 +33,7 @@ function MainView() {
                         <ListenedList userName={userName} logout={logout} />
                     </Route>)}
                 {userName !== '' &&
-                    (<Route path="/search/:aid">
+                    (<Route path="/detail/:aid">
                         <Test/>
                     </Route>)}
                 {userName !== '' &&
