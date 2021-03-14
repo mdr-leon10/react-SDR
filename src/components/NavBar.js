@@ -33,37 +33,46 @@ const useStyles = makeStyles((theme) => ({
 
 export default function ButtonAppBar(props) {
   //const { button1, button2, showButton1, showButton2, showButton3} = props;
-  const { labels=[], showSearchButton=false, showLogoutButton=false, buttonRedirections, logoutCallback = () => {} } = props;
+  const { labels = [], showSearchButton = false, showLogoutButton = false, buttonRedirections, logoutCallback = () => { } } = props;
   const classes = useStyles();
 
   return (
-    <div className={classes.root} style={{justifyContent: "space-evenly", alignItems: "center"}}>
+    <div className={classes.root} style={{ justifyContent: "space-evenly", alignItems: "center" }}>
       <AppBar position="static" className={classes.customBar}>
         <Toolbar>
           <Typography variant="h2" className={classes.title}>
             MyMusic.io
           </Typography>
-          <div style={{flexDirection: "column" }}>
+          <div style={{ flexDirection: "column" }}>
             {labels.map((buttonName, index) => (
-            <Button 
-            color="inherit"
-            component={Link}
-            to={buttonRedirections[index]}
-            >{buttonName}
-            </Button>
+              <Button
+                color="inherit"
+                component={Link}
+                to={buttonRedirections[index]}
+              >{buttonName}
+              </Button>
             ))}
             {showLogoutButton && (
-            <Button 
-            color="inherit"
-            onClick={() => logoutCallback()}
-            >LOGOUT
-            </Button>
+              <Button
+                color="inherit"
+                onClick={() => logoutCallback()}
+              >LOGOUT
+              </Button>
             )}
-            {showSearchButton && (<IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="Search artists you like">
-                              <SearchOutlinedIcon/>
-                              </IconButton>)}
+            {showSearchButton && (
+              <IconButton 
+              edge="start"
+              component={Link}
+              to='/search'
+              className={classes.menuButton} 
+              color="inherit" 
+              aria-label="Search artists you like"
+              >
+                <SearchOutlinedIcon />
+              </IconButton>
+            )}
           </div>
-        </Toolbar> 
+        </Toolbar>
       </AppBar>
     </div>
   );

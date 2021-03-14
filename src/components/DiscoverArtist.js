@@ -1,5 +1,3 @@
-import Paper from '@material-ui/core/Paper';
-import SongBox from './SongBox.js';
 import NavBar from './NavBar.js';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -24,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function DiscoverArtist(props) {
     const classes = useStyles();
-    const { artistsArray } = props;
+    const { logout } = props;
     const artists = [
         {
             idArtist: '1',
@@ -89,10 +87,16 @@ export default function DiscoverArtist(props) {
     ];
     return (
         <div>
-            <NavBar showSearchButton={true} />
+            <NavBar
+                labels={['Home', 'Lo que he escuchado']}
+                buttonRedirections={['/home', '/history']}
+                showLogoutButton={true}
+                logoutCallback={logout}
+                showSearchButton={true}
+            />
 
             <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '50px 20px 20px 20px' }}>
-            <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> ¿Qué artista quieres escuchar hoy?</label>
+                <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> ¿Qué artista quieres escuchar hoy?</label>
                 <div style={{ width: "80%", flexDirection: "column" }}>
                     <form className={classes.root} noValidate autoComplete="off">
                         <TextField id="outlined-basic" label="Artist" variant="outlined" />
@@ -121,4 +125,5 @@ export default function DiscoverArtist(props) {
                 </div>
             </div>
         </div>
-    );}
+    );
+}

@@ -2,8 +2,6 @@ import Paper from '@material-ui/core/Paper';
 import SongBox from './SongBox.js';
 import NavBar from './NavBar.js';
 import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -87,28 +85,33 @@ export default function DiscoverSongs(props) {
             imageURL: ''
         }
     ];
-    const {songArray=artists} = props;
+    const { songArray = artists } = props;
 
 
     return (
         <div>
-            <NavBar labels={['Home', 'Lo que he escuchado']} showSearchButton={true}/>
-            <div style={{padding: '30px 60px 20px 60px'}}>
+            <NavBar 
+            labels={['Home', 'Lo que he escuchado']}
+            buttonRedirections={['/home', '/history']}
+            showLogoutButton={true}
+            logoutCallback={logout}
+            showSearchButton={true}
+            />
+            <div style={{ padding: '30px 60px 20px 60px' }}>
                 <Paper elevation={5} square>
                     <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '20px 0px 20px 0px', flexDirection: "column" }}>
                         {songArray.map((artist) => {
                             var artistName = artist.artist;
                             return (
                                 artist.songs.map((song) => {
-                                    return(
+                                    return (
                                         <div style={{ width: "95%", padding: '10px 100px 30px 100px' }}>
-                                        <SongBox songName={' '+ artistName + ': ' + song.songName}/>
-                                    </div>
-
+                                            <SongBox songName={' ' + artistName + ': ' + song.songName} />
+                                        </div>
                                     );
                                 })
                             );
-                        }) }
+                        })}
                     </div>
                 </Paper>
             </div>
