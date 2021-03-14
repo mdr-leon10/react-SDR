@@ -69,7 +69,7 @@ export default function ListenedList(props) {
         }
     ];
 
-    const placeholders = new Array(artists.length % 4);
+    const placeholders = new Array(artists.length % 4).fill(0);
     return (
         <div>
             <NavBar
