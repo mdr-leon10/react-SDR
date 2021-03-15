@@ -61,7 +61,7 @@ export default function DiscoverArtist(props) {
     }, []);
 
 
-    const itemWidth = '150px';
+    const itemWidth = '250px';
     const itemsPerRow = 5;
     const placeholders = new Array(itemsPerRow - (searchData.results.length%itemsPerRow)).fill(0);
 
@@ -96,7 +96,7 @@ export default function DiscoverArtist(props) {
                     {searchData.ready && searchData.results.reduce((accumulator, artist, index) => {
 
                         const el = (
-                            <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: itemWidth, margin: '0px 20px' }}>
+                            <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', maxWidth: itemWidth, margin: '0px 20px' }}>
                                 <Artist
                                     artistName={artist['artist_name']}
                                     numListens={artist['play_total']}

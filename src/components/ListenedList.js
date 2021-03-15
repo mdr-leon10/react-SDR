@@ -19,7 +19,7 @@ export default function ListenedList(props) {
         .catch(err => console.log(err));
     }, [])
 
-    const itemWidth = '150px';
+    const itemWidth = '250px';
     const itemsPerRow = 5;
     const placeholders = new Array(itemsPerRow - (historyData.artists.length%itemsPerRow)).fill(0);
     return (
@@ -36,7 +36,7 @@ export default function ListenedList(props) {
                 <div style={{ display: "flex", flexWrap: "wrap" }}>
                     {historyData.artists.reduce((accumulator, artist, index) => {
 
-                        const el = (<div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: itemWidth, margin: '0px 20px' }}>
+                        const el = (<div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', maxWidth: itemWidth, margin: '0px 20px' }}>
                             <ArtistWrapper aid={artist['artist_id']} plays={artist['play_count']} />
                         </div>);
                         const el2 = (<div style={{ flexBasis: "100%", height: "40px" }}> </div>);

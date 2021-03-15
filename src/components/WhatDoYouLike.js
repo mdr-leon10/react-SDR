@@ -25,7 +25,7 @@ export default function WhatDoYouLike(props) {
         fetchArtists();
     }, []);
 
-    const itemWidth = '150px';
+    const itemWidth = '250px';
     const itemsPerRow = 5;
     const placeholders = new Array(itemsPerRow - (topArtists.data.length % itemsPerRow)).fill(0);
     return (
@@ -54,7 +54,7 @@ export default function WhatDoYouLike(props) {
                 <div style={{ display: "flex", flexWrap: "wrap" }}>
                     {topArtists.ready && topArtists.data.reduce((accumulator, artist, index) => {
                         const el = (
-                            <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: itemWidth, margin: '0px 20px' }}>
+                            <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', maxWidth: itemWidth, margin: '0px 20px' }}>
                                 <ArtistTopWrapper
                                     aid={artist['artist_id']}
                                     plays={artist['play_sum']}
