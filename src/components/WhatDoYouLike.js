@@ -144,6 +144,4 @@ function ArtistTopWrapper() {
             handleDislike={() => handleDislikeArtist(aid, userName)}
         />
     )
-}
-
-export default WhatDoYouLike
+};
