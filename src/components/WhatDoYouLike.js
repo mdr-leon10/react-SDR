@@ -80,7 +80,7 @@ export default function WhatDoYouLike(props) {
     );
 }
 
-function ArtistTopWrapper() {
+function ArtistTopWrapper(props) {
     const { aid, plays, userName, onAction } = props;
     const [artistName, setName] = useState('Loading...');
     const [artistState, setState] = useState({
