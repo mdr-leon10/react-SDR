@@ -33,17 +33,19 @@ export default function ListenedList(props) {
             />
             <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '50px', flexWrap: "wrap" }}>
                 <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> Los artistas que has escuchado </label>
-                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: 'center' }}>
+                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: 'center', flexDirection='row' }}>
                     {historyData.artists.reduce((accumulator, artist, index) => {
 
-                        const el = (<div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', maxWidth: itemWidth, margin: '0px 20px' }}>
-                            <ArtistHistoryWrapper
-                                aid={artist['artist_id']}
-                                plays={artist['play_count']}
-                                userName={userName}
-                                isLiked={artist['liked']}
-                            />
-                        </div>);
+                        const el = (
+                            <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', maxWidth: itemWidth, margin: '0px 20px' }}>
+                                <ArtistHistoryWrapper
+                                    aid={artist['artist_id']}
+                                    plays={artist['play_count']}
+                                    userName={userName}
+                                    isLiked={artist['liked']}
+                                />
+                            </div>
+                        );
                         const el2 = (<div style={{ flexBasis: "100%", height: "40px" }}> </div>);
 
                         if ((index + 1) % itemsPerRow === 0) {
