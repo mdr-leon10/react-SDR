@@ -79,7 +79,7 @@ export default function DiscoverArtist(props) {
                 <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> ¿Qué artista quieres escuchar hoy?</label>
                 <div style={{ width: "80%", flexDirection: "column" }}>
                     <form className={classes.root} noValidate autoComplete="off" onSubmit={(e) => e.preventDefault()}>
-                        <TextField value={searchVal} onChange={e => setSearchVal(e.target.value)} id="outlined-basic" label="Artist name" variant="outlined" />
+                        <TextField value={searchVal} onChange={e => setSearchVal(e.target.value)} id="outlined-basic" label="Nombre del artista" variant="outlined" />
                     </form>
                 </div>
                 <div style={{ width: "20%", flexDirection: "column" }}>

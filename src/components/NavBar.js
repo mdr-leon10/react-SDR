@@ -56,7 +56,8 @@ export default function ButtonAppBar(props) {
               <Button
                 color="inherit"
                 onClick={() => logoutCallback()}
-              >LOGOUT
+              >
+                CERRAR SESIÓN
               </Button>
             )}
             {showSearchButton && (
