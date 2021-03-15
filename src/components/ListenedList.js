@@ -116,6 +116,7 @@ function ArtistHistoryWrapper(props) {
             artistName={artistName}
             numListens={plays}
             showLikeButton={true}
+            listenedTitle='Escuchado por ti:'
             handleLike={() => handleLikeArtist(aid, userName)}
             showDislikeButton={true}
             handleDislike={() => handleDislikeArtist(aid, userName)}
