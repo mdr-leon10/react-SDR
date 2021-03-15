@@ -66,7 +66,7 @@ export default function ArtistBox(props) {
                                     variant='contained'
                                     onClick={() => onClickDiscover()}
                                 >
-                                    DISCOVER
+                                    VER MÁS
                                 </Button>
                             </div>
                         )}
