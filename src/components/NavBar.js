@@ -43,7 +43,7 @@ export default function ButtonAppBar(props) {
           <Typography variant="h2" className={classes.title}>
             MyMusic.io
           </Typography>
-          <div style={{ display: 'flex', flexDirection: "column", margin: '0px 10px' }}>
+          <div style={{ display: 'flex', flexDirection: "row", margin: '0px 10px' }}>
             {labels.map((buttonName, index) => (
               <Button
                 color="inherit"
