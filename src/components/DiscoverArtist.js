@@ -61,7 +61,7 @@ export default function DiscoverArtist(props) {
     }, []);
 
 
-    const itemWidth = '200px';
+    const itemWidth = '150px';
     const itemsPerRow = 5;
     const placeholders = new Array(itemsPerRow - (searchData.results.length%itemsPerRow)).fill(0);
 

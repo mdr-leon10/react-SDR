@@ -19,7 +19,7 @@ export default function ListenedList(props) {
         .catch(err => console.log(err));
     }, [])
 
-    const itemWidth = '200px';
+    const itemWidth = '150px';
     const itemsPerRow = 5;
     const placeholders = new Array(itemsPerRow - (historyData.artists.length%itemsPerRow)).fill(0);
     return (

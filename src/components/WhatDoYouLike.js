@@ -25,7 +25,7 @@ export default function WhatDoYouLike(props) {
         fetchArtists();
     }, []);
 
-    const itemWidth = '200px';
+    const itemWidth = '150px';
     const itemsPerRow = 5;
     const placeholders = new Array(itemsPerRow - (topArtists.data.length % itemsPerRow)).fill(0);
     return (
@@ -36,9 +36,10 @@ export default function WhatDoYouLike(props) {
             <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '50px', flexWrap: "wrap" }}>
                 <div style={{ display: 'flex', flexDirection: "row" }}>
                     <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> Queremos conocerte, cuentanos que te gusta...</label>
-                    <div style={{ display: 'flex', flexDirection: "row" }}>
+                    <div style={{ width: '100%', display: 'flex', flexDirection: "row-reverse" }}>
+                        <div style={{height: '40px'}}>
                         <Button
-                            disabled={allowContinue}
+                            disabled={!allowContinue}
                             variant='contained'
                             color='primary'
                             component={Link}
@@ -46,6 +47,7 @@ export default function WhatDoYouLike(props) {
                         >
                             CONTINUAR
                         </Button>
+                        </div>
                     </div>
                 </div>
 
