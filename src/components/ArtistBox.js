@@ -37,11 +37,11 @@ export default function ArtistBox(props) {
                 <div>
                     <div style={{ justifyContent: "left", display: "flex", alignItems: "left", alignContent: "space-between", padding: '5px 0px 5px 0px' }}>
                         <label style={{ width: "100%", fontSize: '1em' }}>Artist: </label>
-                        <label style={{ width: "100%", fontSize: '1em' }}>{artistName ? artistName : 'Imagine Dragons'}</label>
+                        <label style={{ width: "100%", fontSize: '1em' }}>{artistName}</label>
                     </div>
                     <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '5px 0px 10px 0px' }}>
-                        <label style={{ width: "100%", fontSize: '1em' }}> {listensTitle ? listensTitle : 'World listens:'} </label>
-                        <label style={{ width: "100%", fontSize: '1em' }}>{numListens ? numListens : '1000'}</label>
+                        <label style={{ width: "100%", fontSize: '1em' }}> {listensTitle ? listensTitle : 'Globalmente escuchado:'} </label>
+                        <label style={{ width: "100%", fontSize: '1em' }}>{numListens == 1? `${numListens} vez` : `${numListens} veces`}</label>
                     </div>
                     <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '5px 0px 5px 0px', width: "100%" }}>
                         {showDislikeButton && (
