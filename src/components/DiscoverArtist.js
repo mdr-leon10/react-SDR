@@ -68,7 +68,7 @@ export default function DiscoverArtist(props) {
     return (
         <div>
             <NavBar
-                labels={['Home', 'Lo que he escuchado']}
+                labels={['INICIO', 'Lo que he escuchado']}
                 buttonRedirections={['/home', '/history']}
                 showLogoutButton={true}
                 logoutCallback={logout}

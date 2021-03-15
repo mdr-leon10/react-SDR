@@ -25,7 +25,7 @@ export default function ListenedList(props) {
     return (
         <div>
             <NavBar
-                labels={['Home', 'Lo que he escuchado']}
+                labels={['INICIO', 'Lo que he escuchado']}
                 showSearchButton={true}
                 buttonRedirections={['/home', '/history']}
                 showLogoutButton={true}
