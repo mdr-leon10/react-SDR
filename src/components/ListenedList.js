@@ -33,7 +33,7 @@ export default function ListenedList(props) {
             />
             <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '50px', flexWrap: "wrap" }}>
                 <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> Los artistas que has escuchado </label>
-                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: 'center', flexDirection='row' }}>
+                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: 'center', flexDirection:'row' }}>
                     {historyData.artists.reduce((accumulator, artist, index) => {
 
                         const el = (
