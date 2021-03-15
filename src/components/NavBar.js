@@ -43,7 +43,7 @@ export default function ButtonAppBar(props) {
           <Typography variant="h2" className={classes.title}>
             MyMusic.io
           </Typography>
-          <div style={{ flexDirection: "column" }}>
+          <div style={{ display: 'flex', flexDirection: "column", margin: '0px 10px' }}>
             {labels.map((buttonName, index) => (
               <Button
                 color="inherit"
@@ -61,18 +61,16 @@ export default function ButtonAppBar(props) {
               </Button>
             )}
             {showSearchButton && (
-              <div style={{padding: '0px 10px'}}>
-                <IconButton
-                  edge="start"
-                  component={Link}
-                  to='/search'
-                  className={classes.menuButton}
-                  color="inherit"
-                  aria-label="Search artists you like"
-                >
-                  <SearchOutlinedIcon />
-                </IconButton>
-              </div>
+              <IconButton
+                edge="start"
+                component={Link}
+                to='/search'
+                className={classes.menuButton}
+                color="inherit"
+                aria-label="Search artists you like"
+              >
+                <SearchOutlinedIcon />
+              </IconButton>
             )}
           </div>
         </Toolbar>
