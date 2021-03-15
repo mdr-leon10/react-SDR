@@ -89,11 +89,11 @@ function ArtistTopWrapper(props) {
         paperAsPurple: false,
         paperAsRed: false,
         disableButtons: false,
-    })
+    });
 
     const handleDislikeArtist = (aid, userName) => {
         axios.post(
-            `http://172.24.100.74:8000/api/like/`, {
+            `http://172.24.100.74:8000/api/dislike/`, {
             user_id: userName,
             artist_id: aid,
         })

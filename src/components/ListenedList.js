@@ -7,21 +7,21 @@ import NavBar from './NavBar.js';
 
 export default function ListenedList(props) {
     const { userName, logout = () => { } } = props;
-    const [historyData, setHistory] = useState({artists: []});
+    const [historyData, setHistory] = useState({ artists: [] });
 
     useEffect(() => {
         axios.get(`http://172.24.100.74:8000/api/history/${userName}/`)
-        .then(res => {
-              setHistory({
-                  artists: res.data['history']
-              });
-        })
-        .catch(err => console.log(err));
+            .then(res => {
+                setHistory({
+                    artists: res.data['history']
+                });
+            })
+            .catch(err => console.log(err));
     }, [])
 
     const itemWidth = '250px';
     const itemsPerRow = 5;
-    const placeholders = new Array(itemsPerRow - (historyData.artists.length%itemsPerRow)).fill(0);
+    const placeholders = new Array(itemsPerRow - (historyData.artists.length % itemsPerRow)).fill(0);
     return (
         <div>
             <NavBar
@@ -33,11 +33,16 @@ export default function ListenedList(props) {
             />
             <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '50px', flexWrap: "wrap" }}>
                 <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> Los artistas que has escuchado </label>
-                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: 'center'}}>
+                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: 'center' }}>
                     {historyData.artists.reduce((accumulator, artist, index) => {
 
                         const el = (<div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', maxWidth: itemWidth, margin: '0px 20px' }}>
-                            <ArtistWrapper aid={artist['artist_id']} plays={artist['play_count']} />
+                            <ArtistHistoryWrapper
+                                aid={artist['artist_id']}
+                                plays={artist['play_count']}
+                                userName={userName}
+                                isLiked={artist['liked']}
+                            />
                         </div>);
                         const el2 = (<div style={{ flexBasis: "100%", height: "40px" }}> </div>);
 
@@ -58,19 +63,62 @@ export default function ListenedList(props) {
     );
 }
 
-function ArtistWrapper(props) {
-    const { aid, plays } = props;
-    const [ artistName, setName ] = useState('Cargando...');
+function ArtistHistoryWrapper(props) {
+    const { aid, plays, userName, isLiked } = props;
+    const [artistName, setName] = useState('Cargando...');
+    const [artistState, setState] = useState({
+        paperAsPurple: isLiked,
+        paperAsRed: !isLiked,
+    })
 
     useEffect(() => {
         axios.get(`http://172.24.100.74:8000/api/artist/${aid}/`)
-        .then(res => {
-            setName(res.data['artist_name']);
-        })
-        .catch(err => console.log(err))
+            .then(res => {
+                setName(res.data['artist_name']);
+            })
+            .catch(err => console.log(err))
     }, [])
 
+    const handleDislikeArtist = (aid, userName) => {
+        axios.post(
+            `http://172.24.100.74:8000/api/dislike/`, {
+            user_id: userName,
+            artist_id: aid,
+        })
+            .then(res => {
+                setState({
+                    paperAsPurple: false,
+                    paperAsRed: true,
+                });
+            })
+            .catch(err => console.log(err))
+    };
+
+    const handleLikeArtist = (aid, userName) => {
+        axios.post(
+            `http://172.24.100.74:8000/api/like/`, {
+            user_id: userName,
+            artist_id: aid,
+        })
+            .then(res => {
+                setState({
+                    paperAsPurple: true,
+                    paperAsRed: false,
+                });
+            })
+            .catch(err => console.log(err))
+    };
+
     return (
-        <Artist artistName={artistName} numListens={plays} listensTitle={'You have listened:'} showButton={false} />
-    );
+        <Artist
+            paperAsRed={artistState.paperAsRed}
+            paperAsPurple={artistState.paperAsPurple}
+            artistName={artistName}
+            numListens={plays}
+            showLikeButton={true}
+            handleLike={() => handleLikeArtist(aid, userName)}
+            showDislikeButton={true}
+            handleDislike={() => handleDislikeArtist(aid, userName)}
+        />
+    )
 };
