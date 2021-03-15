@@ -87,7 +87,7 @@ export default function DiscoverArtist(props) {
                 </div>
             </div>
             <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '50px', flexWrap: "wrap" }}>
-                <div style={{ display: "flex", flexWrap: "wrap" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: 'center' }}>
                     {!searchData.ready && (
                         <div>
                             <h1>Loading...</h1>

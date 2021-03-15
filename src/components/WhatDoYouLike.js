@@ -36,7 +36,7 @@ export default function WhatDoYouLike(props) {
             <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '50px', flexWrap: "wrap" }}>
                 <div style={{ display: 'flex', flexDirection: "row" }}>
                     <label style={{ width: '100%', fontSize: '3em', padding: '20px 0px 20px 0px' }}> Queremos conocerte, cuentanos que te gusta...</label>
-                    <div style={{ width: '100%', display: 'flex', flexDirection: "row-reverse",}}>
+                    <div style={{ width: '100%', display: 'flex', flexDirection: "row-reverse"}}>
                         <div style={{height: '40px'}}>
                         <Button
                             disabled={!allowContinue}
@@ -51,7 +51,7 @@ export default function WhatDoYouLike(props) {
                     </div>
                 </div>
 
-                <div style={{ display: "flex", flexWrap: "wrap" }}>
+                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: 'center' }}>
                     {topArtists.ready && topArtists.data.reduce((accumulator, artist, index) => {
                         const el = (
                             <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', maxWidth: itemWidth, margin: '0px 20px' }}>
