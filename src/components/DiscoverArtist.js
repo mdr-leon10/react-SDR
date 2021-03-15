@@ -90,7 +90,7 @@ export default function DiscoverArtist(props) {
                 <div style={{ display: "flex", flexWrap: "wrap", justifyContent: 'center' }}>
                     {!searchData.ready && (
                         <div>
-                            <h1>Loading...</h1>
+                            <h1>Cargando...</h1>
                         </div>
                     )}
                     {searchData.ready && searchData.results.reduce((accumulator, artist, index) => {
