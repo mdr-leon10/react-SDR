@@ -137,7 +137,7 @@ function ArtistContainer(props) {
                         <div style={{ width: "70%", flexDirection: "column" }}>
                             {artistData.songs.map((song) => {
                                 return (
-                                    <div style={{ padding: '40px 0px 40px 0px' }}>
+                                    <div style={{ padding: '10px 0px 10px 0px' }}>
                                         <Song songName={song['track_name']} onPlay={() => handleSongPlay(song['track_id'], userName)} />
                                     </div>
                                 );
