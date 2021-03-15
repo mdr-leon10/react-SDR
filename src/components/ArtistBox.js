@@ -44,17 +44,17 @@ export default function ArtistBox(props) {
                         <label style={{ width: "100%", fontSize: '1em' }}>{numListens ? numListens : '1000'}</label>
                     </div>
                     <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '5px 0px 5px 0px', width: "100%" }}>
-                        {showLikeButton && (
-                            <div style={{ padding: '0px 0px 10px 0px' }}>
-                                <IconButton disabled={disableButtons} color="primary" aria-label="ThumbUpIcon" onClick={() => handleLike()}>
-                                    <ThumbUpIcon />
-                                </IconButton>
-                            </div>
-                        )}
                         {showDislikeButton && (
                             <div style={{ padding: '0px 0px 10px 0px' }}>
                                 <IconButton disabled={disableButtons} color="primary" aria-label="ThumbUpIcon" onClick={() => handleDislike()}>
                                     <ThumbDownIcon />
+                                </IconButton>
+                            </div>
+                        )}
+                        {showLikeButton && (
+                            <div style={{ padding: '0px 0px 10px 0px' }}>
+                                <IconButton disabled={disableButtons} color="primary" aria-label="ThumbUpIcon" onClick={() => handleLike()}>
+                                    <ThumbUpIcon />
                                 </IconButton>
                             </div>
                         )}
