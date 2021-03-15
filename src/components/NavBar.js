@@ -61,16 +61,18 @@ export default function ButtonAppBar(props) {
               </Button>
             )}
             {showSearchButton && (
-              <IconButton 
-              edge="start"
-              component={Link}
-              to='/search'
-              className={classes.menuButton} 
-              color="inherit" 
-              aria-label="Search artists you like"
-              >
-                <SearchOutlinedIcon />
-              </IconButton>
+              <div style={{padding: '0px 10px'}}>
+                <IconButton
+                  edge="start"
+                  component={Link}
+                  to='/search'
+                  className={classes.menuButton}
+                  color="inherit"
+                  aria-label="Search artists you like"
+                >
+                  <SearchOutlinedIcon />
+                </IconButton>
+              </div>
             )}
           </div>
         </Toolbar>
