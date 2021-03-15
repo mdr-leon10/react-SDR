@@ -131,8 +131,8 @@ function ArtistContainer(props) {
             <div style={{ paddingTop: '75px' }}>
                 <Paper elevation={5} square style={{ height: '40%' }}>
                     <div style={{ justifyContent: "space-evenly", display: "flex", alignItems: "center", padding: '20px 0px 20px 0px' }}>
-                        <div style={{ maxWidth: "20%", maxHeight: "80%" }}>
-                            <Artist artistName={artistData.name} numListens={artistData.worldListens} showButton={false} />
+                        <div style={{ maxWidth: "20%", maxHeight: "60%" }}>
+                            <ArtistHomeWrapper aid={aid} artistName={artistData.name} userName={userName} numListens={artistData.worldListens}/>
                         </div>
                         <div style={{ width: "70%", flexDirection: "column" }}>
                             {artistData.songs.map((song) => {
@@ -151,3 +151,68 @@ function ArtistContainer(props) {
         return (<div></div>);
     }
 }
+
+function ArtistHomeWrapper(props) {
+    const { aid, plays, userName, artistName } = props;
+    const [artistState, setState] = useState({
+        paperAsPurple: false,
+        paperAsRed: false,
+        disableButtons: false,
+    })
+
+    const handleDislikeArtist = (aid, userName) => {
+        axios.post(
+            `http://172.24.100.74:8000/api/like/`, {
+            user_id: userName,
+            artist_id: aid,
+        })
+            .then(res => {
+                setState({
+                    paperAsPurple: false,
+                    paperAsRed: true,
+                    disableButtons: true,
+                });
+                onAction();
+            })
+            .catch(err => console.log(err))
+    };
+
+    const handleLikeArtist = (aid, userName) => {
+        axios.post(
+            `http://172.24.100.74:8000/api/like/`, {
+            user_id: userName,
+            artist_id: aid,
+        })
+            .then(res => {
+                setState({
+                    paperAsPurple: true,
+                    paperAsRed: false,
+                    disableButtons: true,
+                });
+                onAction();
+            })
+            .catch(err => console.log(err))
+    };
+
+    useEffect(() => {
+        axios.get(`http://172.24.100.74:8000/api/artist/${aid}/`)
+            .then(res => {
+                setName(res.data['artist_name']);
+            })
+            .catch(err => console.log(err))
+    }, [])
+
+    return (
+        <Artist
+            paperAsRed={artistState.paperAsRed}
+            paperAsPurple={artistState.paperAsPurple}
+            disableButtons={artistState.disableButtons}
+            artistName={artistName}
+            numListens={plays}
+            showLikeButton={true}
+            handleLike={() => handleLikeArtist(aid, userName)}
+            showDislikeButton={true}
+            handleDislike={() => handleDislikeArtist(aid, userName)}
+        />
+    )
+};
