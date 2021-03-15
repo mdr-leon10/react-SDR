@@ -35,7 +35,7 @@ export default function WhatDoYouLike(props) {
             />
             <div style={{ display: "flex", alignItems: "center", flexDirection: "column", margin: '50px', flexWrap: "wrap" }}>
                 <div style={{ display: 'flex', flexDirection: "row" }}>
-                    <label style={{ fontSize: '3em', padding: '20px 0px 20px 0px' }}> Queremos conocerte, cuentanos que te gusta...</label>
+                    <label style={{ width: '100%', fontSize: '3em', padding: '20px 0px 20px 0px' }}> Queremos conocerte, cuentanos que te gusta...</label>
                     <div style={{ width: '100%', display: 'flex', flexDirection: "row-reverse" }}>
                         <div style={{height: '40px'}}>
                         <Button
