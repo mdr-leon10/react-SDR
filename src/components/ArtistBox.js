@@ -2,19 +2,35 @@ import { Button } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
 import ThumbUpIcon from '@material-ui/icons/ThumbUp';
+import ThumbDownIcon from '@material-ui/icons/ThumbDown';
 
 export default function ArtistBox(props) {
     const {
+        paperAsRed = false,
+        paperAsPurple = false,
+        disableButtons = false,
         artistName,
         numListens,
-        showButton = false,
+        showLikeButton = false,
+        showDislikeButton = false,
+        handleLike = () => {},
+        handleDislike = () => {},
         showDiscoverButton = false,
         listensTitle,
         onClickDiscover = () => { },
     } = props;
+
+    const defineColor = () => {
+        if (paperAsRed) return '#ffb5b5'
+        if (paperAsPurple) return '#b5b9ff'
+        return 'white'
+    }
+
     return (
         <div>
-            <Paper elevation={4} square>
+            <Paper elevation={4} square style={{
+                backgroundColor: defineColor()
+            }}>
                 <div>
                     <img src={process.env.PUBLIC_URL + '/micro.jpg'} width="100%" alt='Artist' />
                 </div>
@@ -28,16 +44,24 @@ export default function ArtistBox(props) {
                         <label style={{ width: "100%", fontSize: '1em' }}>{numListens ? numListens : '1000'}</label>
                     </div>
                     <div style={{ justifyContent: "center", display: "flex", alignItems: "center", padding: '5px 0px 5px 0px', width: "100%" }}>
-                        {showButton && (
+                        {showLikeButton && (
                             <div style={{ padding: '0px 0px 10px 0px' }}>
-                                <IconButton color="primary" aria-label="ThumbUpIcon">
+                                <IconButton disabled={disableButtons} color="primary" aria-label="ThumbUpIcon" onClick={() => handleLike()}>
                                     <ThumbUpIcon />
+                                </IconButton>
+                            </div>
+                        )}
+                        {showDislikeButton && (
+                            <div style={{ padding: '0px 0px 10px 0px' }}>
+                                <IconButton disabled={disableButtons} color="primary" aria-label="ThumbUpIcon" onClick={() => handleDislike()}>
+                                    <ThumbDownIcon />
                                 </IconButton>
                             </div>
                         )}
                         {showDiscoverButton && (
                             <div style={{ padding: '0px 0px 10px 0px' }}>
                                 <Button
+                                    disabled={disableButtons}
                                     color='primary'
                                     variant='contained'
                                     onClick={() => onClickDiscover()}
