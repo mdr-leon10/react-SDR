@@ -81,7 +81,7 @@ export default function Recommendation(props) {
                 </div>
                 {!recomData.ready && (
                     <div>
-                        <h1>Loading...</h1>
+                        <h1>Cargando...</h1>
                     </div>
                 )}
                 {recomData.ready && recomData.artists.map((aid, index) => (

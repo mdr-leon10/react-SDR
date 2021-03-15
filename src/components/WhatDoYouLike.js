@@ -84,7 +84,7 @@ export default function WhatDoYouLike(props) {
 
 function ArtistTopWrapper(props) {
     const { aid, plays, userName, onAction } = props;
-    const [artistName, setName] = useState('Loading...');
+    const [artistName, setName] = useState('Cargando...');
     const [artistState, setState] = useState({
         paperAsPurple: false,
         paperAsRed: false,

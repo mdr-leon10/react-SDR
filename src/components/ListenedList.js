@@ -60,7 +60,7 @@ export default function ListenedList(props) {
 
 function ArtistWrapper(props) {
     const { aid, plays } = props;
-    const [ artistName, setName ] = useState('Loading...');
+    const [ artistName, setName ] = useState('Cargando...');
 
     useEffect(() => {
         axios.get(`http://172.24.100.74:8000/api/artist/${aid}/`)
