@@ -105,7 +105,7 @@ function ArtistContainer(props) {
                     ready: true,
                     name: res.data['artist_name'],
                     worldListens: res.data['total_play'],
-                    songs: res.data['songs'].slice(0, 3),
+                    songs: res.data['songs'].slice(0, 5),
                 }))
             })
             .catch(err => console.log(err));
