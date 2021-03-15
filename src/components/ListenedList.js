@@ -57,7 +57,7 @@ export default function ListenedList(props) {
                     }, []
                     )}
                     {placeholders.length < itemsPerRow && placeholders.map(() => (
-                        <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', width: itemWidth, margin: '0px 20px' }}></div>
+                        <div style={{ flexGrow: "1", padding: '20px 0px 20px 0px', maxWidth: itemWidth, margin: '0px 20px' }}></div>
                     ))}
                 </div>
             </div>
