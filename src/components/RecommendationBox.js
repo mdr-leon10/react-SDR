@@ -172,7 +172,6 @@ function ArtistHomeWrapper(props) {
                     paperAsRed: true,
                     disableButtons: true,
                 });
-                onAction();
             })
             .catch(err => console.log(err))
     };
@@ -189,18 +188,9 @@ function ArtistHomeWrapper(props) {
                     paperAsRed: false,
                     disableButtons: true,
                 });
-                onAction();
             })
             .catch(err => console.log(err))
     };
-
-    useEffect(() => {
-        axios.get(`http://172.24.100.74:8000/api/artist/${aid}/`)
-            .then(res => {
-                setName(res.data['artist_name']);
-            })
-            .catch(err => console.log(err))
-    }, [])
 
     return (
         <Artist
